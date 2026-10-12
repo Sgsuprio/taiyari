@@ -1,0 +1,22 @@
+subject,q_en,a_en,b_en,c_en,d_en,correct,exp_en
+phy,What is the SI unit of force?,Joule,Newton,Watt,Pascal,1,Force is measured in newtons (N).
+phy,Which of these is a vector quantity?,Speed,Mass,Velocity,Time,2,Velocity has both magnitude and direction.
+phy,The speed of light in vacuum is about,3 x 10^6 m/s,3 x 10^8 m/s,3 x 10^10 m/s,3 x 10^5 m/s,1,Light travels at about 3 x 10^8 metres per second in vacuum.
+che,What is the atomic number of carbon?,4,6,8,12,1,"Carbon has 6 protons, so its atomic number is 6."
+che,Which gas is released when zinc reacts with dilute sulphuric acid?,Oxygen,Hydrogen,Carbon dioxide,Nitrogen,1,"Zinc displaces hydrogen from the acid, so hydrogen gas is released."
+che,The chemical formula of common salt is,KCl,NaCl,CaCl2,NaOH,1,"Common salt is sodium chloride, NaCl."
+bio,Which organelle is called the powerhouse of the cell?,Nucleus,Ribosome,Mitochondria,Golgi body,2,Mitochondria release most of the cell's energy.
+bio,Which blood cells help in clotting of blood?,Red blood cells,White blood cells,Platelets,Plasma,2,Platelets gather at a wound and help the blood clot.
+bio,The process by which green plants make their food is called,Respiration,Photosynthesis,Digestion,Transpiration,1,"Plants make food from light, water and carbon dioxide by photosynthesis."
+mth,"If x + 7 = 12, what is the value of x?",3,4,5,6,2,x = 12 - 7 = 5.
+mth,The sum of the angles of a triangle is,90 degrees,180 degrees,270 degrees,360 degrees,1,The three angles of any triangle add up to 180 degrees.
+mth,What is the value of 2^5?,10,16,25,32,3,2 x 2 x 2 x 2 x 2 = 32.
+sci,Which gas do plants take in from the air for photosynthesis?,Oxygen,Nitrogen,Carbon dioxide,Hydrogen,2,Plants absorb carbon dioxide through their stomata.
+sci,The SI unit of electric current is,Volt,Ampere,Ohm,Watt,1,Electric current is measured in amperes (A).
+sci,The pH of a neutral solution at room temperature is,0,7,10,14,1,Pure water is neutral with a pH of 7.
+mat,The sum of the first 10 natural numbers is,45,50,55,60,2,1 + 2 + ... + 10 = 10 x 11 / 2 = 55.
+mat,The HCF of 12 and 18 is,3,6,9,12,1,The largest number that divides both 12 and 18 is 6.
+mat,A quadratic polynomial can have at most how many zeroes?,1,2,3,4,1,A polynomial of degree 2 has at most 2 zeroes.
+gk,Who chaired the Drafting Committee of the Indian Constitution?,Jawaharlal Nehru,B. R. Ambedkar,Sardar Patel,Rajendra Prasad,1,Dr. B. R. Ambedkar chaired the Drafting Committee.
+gk,What is the capital of West Bengal?,Kolkata,Howrah,Siliguri,Durgapur,0,Kolkata is the capital of West Bengal.
+gk,Which is the national animal of India?,Lion,Tiger,Elephant,Leopard,1,The Bengal tiger is India's national animal.
