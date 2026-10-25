@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://taiyari.volonix.in/sitemap.xml
