@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Taiyari: Free Exam Practice, Mock Tests & AI Questions</title>
+<meta name="description" content="Free exam-practice app: quizzes, timed mock tests, a mistake notebook and AI questions from your notes, in English, Hindi and Bengali.">
+<link rel="canonical" href="https://taiyari.volonix.in/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Taiyari">
+<meta property="og:title" content="Taiyari: Free exam practice in English, Hindi &amp; Bengali">
+<meta property="og:description" content="Quizzes, timed mock tests, a mistake notebook and AI questions made from your own notes. Free, in English, Hindi and Bengali.">
+<meta property="og:url" content="https://taiyari.volonix.in/">
+<meta property="og:image" content="https://taiyari.volonix.in/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Taiyari logo with the text Free exam practice">
+<meta property="og:locale" content="en_IN">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Taiyari: Free exam practice in English, Hindi &amp; Bengali">
+<meta name="twitter:description" content="Quizzes, timed mock tests, a mistake notebook and AI questions made from your own notes. Free, in English, Hindi and Bengali.">
+<meta name="twitter:image" content="https://taiyari.volonix.in/og-image.png">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#2753D8">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Hind:wght@400;600;700&family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#EAF0F7;--card:#fff;--ink:#17233A;--mute:#5B6B85;--line:#C9D4E4;--blue:#2753D8;--ok:#1B8A57;--bad:#C4352B;--okbg:#DFF3E8;--badbg:#FADFDC}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0F1726;--card:#18233A;--ink:#E7EDF8;--mute:#9AA9C4;--line:#2C3B58;--blue:#7A9BFF;--ok:#4CC38A;--bad:#FF7D72;--okbg:#14382B;--badbg:#42201D}}
+:root[data-theme="dark"]{--bg:#0F1726;--card:#18233A;--ink:#E7EDF8;--mute:#9AA9C4;--line:#2C3B58;--blue:#7A9BFF;--ok:#4CC38A;--bad:#FF7D72;--okbg:#14382B;--badbg:#42201D}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Hind','Hind Siliguri',system-ui,sans-serif;font-size:17px;line-height:1.5}
+#app{max-width:480px;margin:0 auto;padding:20px 18px 40px;min-height:100vh}
+h1{font-size:28px;line-height:1.2;margin:0 0 6px;font-weight:700}
+p{margin:0}.mute{color:var(--mute)}
+button{font:inherit;color:inherit;cursor:pointer}
+button:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px}
+.chip{border:1.5px solid var(--line);background:var(--card);border-radius:20px;padding:4px 14px;font-weight:600}
+.big{display:block;width:100%;background:var(--card);border:2px solid var(--line);border-radius:14px;padding:18px;margin-top:12px;font-size:22px;font-weight:700;text-align:left}
+.sub{display:flex;gap:14px;align-items:center;width:100%;background:var(--card);border:2px solid var(--line);border-radius:14px;padding:14px 16px;margin-top:12px;text-align:left}
+.sub b{display:block;font-size:19px}
+.ico{flex:none;width:46px;height:46px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center;font-weight:700;font-size:20px}
+.bar{height:8px;background:var(--line);border-radius:4px;overflow:hidden;margin:6px 0 22px}
+.bar i{display:block;height:100%;background:var(--blue);transition:width .25s}
+.q{font-size:21px;font-weight:600;margin-bottom:18px}
+.opt{display:flex;gap:14px;align-items:center;width:100%;background:var(--card);border:2px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:10px;text-align:left}
+.opt .o{flex:none;width:34px;height:34px;border-radius:50%;border:2px solid var(--mute);display:grid;place-items:center;font-weight:700;font-size:15px}
+.opt.sel .o{background:var(--blue);border-color:var(--blue);color:#fff}
+.opt.ok{background:var(--okbg);border-color:var(--ok)}.opt.ok .o{background:var(--ok);border-color:var(--ok);color:#fff}
+.opt.bad{background:var(--badbg);border-color:var(--bad)}.opt.bad .o{background:var(--bad);border-color:var(--bad);color:#fff}
+.cta{display:block;width:100%;background:var(--blue);color:#fff;border:0;border-radius:12px;padding:14px;font-weight:700;font-size:18px;margin-top:14px}
+.cta.alt{background:transparent;color:var(--ink);border:2px solid var(--line)}
+:root:not([data-theme="light"]) .cta{color:#fff}
+.score{font-size:64px;font-weight:700;line-height:1;margin:18px 0 6px}
+.link{background:none;border:0;color:var(--mute);font-weight:600;padding:6px 0}
+.logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:20px}
+.note{background:var(--card);border:2px solid var(--line);border-radius:14px;padding:16px 16px 6px 36px;margin:14px 0 0}.note li{margin-bottom:12px}
+.rv{background:var(--card);border:2px solid var(--line);border-left-width:6px;border-radius:12px;padding:12px 14px;margin-top:12px}.rv.good{border-left-color:var(--ok)}.rv.miss{border-left-color:var(--bad)}.rv p{margin:0 0 4px}.q2{font-weight:600;font-size:18px;margin:2px 0 8px!important}.why{margin-top:8px!important;color:var(--mute)}h2{font-size:21px;margin:26px 0 0}
+.grp{display:flex;gap:8px;align-items:center}.inp{width:100%;font:inherit;padding:14px;border:2px solid var(--line);border-radius:12px;background:var(--card);color:var(--ink);margin-top:12px}.err{color:var(--bad);font-weight:600;margin:10px 0 0}.stg{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}.stc{background:var(--card);border:2px solid var(--line);border-radius:12px;padding:12px;color:var(--mute)}.stc b{display:block;font-size:28px;color:var(--ink)}
+.lbl{display:block;margin-top:18px;font-weight:600}.demo{background:var(--okbg);border:2px solid var(--ok);border-radius:12px;padding:10px 14px;margin-top:14px}
+.ld i{animation:ldp 1.4s ease-in-out infinite alternate}@keyframes ldp{from{width:12%}to{width:96%}}@media (prefers-reduced-motion:reduce){.ld i{animation:none;width:60%}}
+/* v13 look: OMR-sheet identity, rounded display type, tinted accents */
+:root{--bg:#F2F5FB;--card:#fff;--ink:#14213D;--mute:#5A6785;--line:#DCE3F0;--blue:#2753D8;--btn:#2753D8;--hero:#1B2470;--ring:rgba(39,83,216,.2);--sh:0 1px 2px rgba(20,33,61,.06),0 12px 24px -16px rgba(20,33,61,.3)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0E1424;--card:#172036;--ink:#E8EEFA;--mute:#9CABC8;--line:#27324D;--blue:#7C9CFF;--btn:#4468F0;--hero:#26338F;--ring:rgba(124,156,255,.3);--sh:none}}
+:root[data-theme="dark"]{--bg:#0E1424;--card:#172036;--ink:#E8EEFA;--mute:#9CABC8;--line:#27324D;--blue:#7C9CFF;--btn:#4468F0;--hero:#26338F;--ring:rgba(124,156,255,.3);--sh:none}
+h1,h2,.logo,.av{font-family:'Plus Jakarta Sans','Hind','Hind Siliguri',system-ui,sans-serif}
+h1{font-size:31px;line-height:1.12;letter-spacing:-.01em;margin:0 0 8px}
+h2{font-size:22px;margin:26px 0 2px}
+.top{margin-bottom:20px}
+.chip{border:1px solid var(--line);padding:6px 14px;box-shadow:var(--sh)}
+.av{width:42px;height:42px;border:0;border-radius:50%;background:var(--btn);color:#fff;font-size:19px;font-weight:700;display:grid;place-items:center;padding:0}
+.sub,.big,.note,.rv,.stc,.inp{border:1px solid var(--line);box-shadow:var(--sh)}
+.rv{border-left-width:6px}
+.sub{border-radius:20px;padding:14px 16px}
+.sub b,.tile b{font-family:'Plus Jakarta Sans','Hind','Hind Siliguri',system-ui,sans-serif;font-weight:700}
+.sub b{font-size:20px;line-height:1.2}
+.ico{width:48px;height:48px;border-radius:15px;background:var(--abg,rgba(39,83,216,.13));color:var(--a,var(--blue));font-family:'Plus Jakarta Sans','Hind',sans-serif;font-size:22px}
+.sub:active,.tile:active,.hero:active,.opt:active,.cta:active{transform:scale(.985)}
+.sub,.tile,.hero,.opt,.cta{transition:transform .12s}
+.cta{background:var(--btn);border-radius:16px;padding:15px;box-shadow:0 10px 20px -12px var(--btn)}
+:root .cta.alt,:root:not([data-theme="light"]) .cta.alt{background:transparent;box-shadow:none;border:1.5px solid var(--line);color:var(--ink)}
+.bar{height:10px;border-radius:6px;margin:8px 0 20px}.bar i{background:var(--btn);border-radius:6px}
+.q{line-height:1.35}
+.opt{border:1.5px solid var(--line);border-radius:18px;padding:14px 16px;box-shadow:var(--sh)}
+.opt .o{font-family:'Plus Jakarta Sans','Hind',sans-serif}
+.opt.sel{border-color:var(--blue);box-shadow:0 0 0 3px var(--ring)}
+.opt.sel .o{background:var(--btn);border-color:var(--btn)}
+.hero{display:block;width:100%;text-align:left;color:#fff;border:0;border-radius:24px;padding:18px 18px 16px;margin-top:14px;position:relative;overflow:hidden;background-color:var(--hero);background-image:radial-gradient(circle at 1px 1px,rgba(255,255,255,.2) 1.6px,transparent 2.2px);background-size:20px 20px}
+.hero::after{content:"";position:absolute;right:-36px;top:-36px;width:124px;height:124px;border-radius:50%;border:16px solid rgba(255,255,255,.13)}
+.hero b{display:block;font:700 25px/1.15 'Plus Jakarta Sans','Hind','Hind Siliguri',system-ui,sans-serif;margin:6px 0 4px;position:relative}
+.hero .d{display:block;opacity:.9;max-width:28ch;position:relative}
+.hgo{display:inline-block;margin-top:12px;background:#fff;color:var(--hero);font-weight:700;border-radius:999px;padding:8px 18px;position:relative}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.tile{display:flex;flex-direction:column;gap:12px;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:22px;padding:14px;box-shadow:var(--sh);min-height:132px}
+.tile .ico{width:44px;height:44px;font-size:20px}
+.tile b{display:block;font-size:20px;line-height:1.15}
+.tile small{display:block;color:var(--mute);font-size:14px;line-height:1.3;margin-top:2px}
+.tile.soon{opacity:.7}.tile.soon .ico{filter:saturate(.45)}
+.sheet{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:14px 16px;box-shadow:var(--sh)}
+.wk{display:flex;justify-content:space-between;gap:4px}
+.wd{display:flex;flex-direction:column;align-items:center;gap:6px;font-size:13px;color:var(--mute);min-width:34px}
+.wd i{display:block;position:relative;width:28px;height:28px;border-radius:50%;border:2px solid var(--line)}
+.wd.on i{background:var(--btn);border-color:var(--btn)}
+.wd.on i::after{content:"";position:absolute;left:8px;top:3px;width:6px;height:12px;border:solid #fff;border-width:0 2.5px 2.5px 0;transform:rotate(45deg)}
+.wd.td{color:var(--ink);font-weight:700}.wd.td i{border-color:var(--blue)}.wd.td.on i{border-color:var(--btn)}
+.stk{margin-top:10px;display:flex;align-items:baseline;gap:8px;color:var(--mute)}
+.sn{font:700 32px/1 'Plus Jakarta Sans','Hind',sans-serif;color:var(--ink)}
+.ring{position:relative;width:148px;height:148px;margin:10px 0 2px}
+.rn{position:absolute;inset:0;display:grid;place-content:center;text-align:center}
+.rn b{font:700 46px/1 'Plus Jakarta Sans','Hind',sans-serif}.rn span{color:var(--mute);font-weight:600}
+.msg{font:700 21px/1.2 'Plus Jakarta Sans','Hind','Hind Siliguri',system-ui,sans-serif;margin:6px 0 4px}
+@media (prefers-reduced-motion:reduce){.sub,.tile,.hero,.opt,.cta{transition:none}.sub:active,.tile:active,.hero:active,.opt:active,.cta:active{transform:none}}
+.mdl{position:fixed;inset:0;z-index:50;background:rgba(10,15,30,.55);display:grid;place-items:end center;padding:16px 16px calc(16px + env(safe-area-inset-bottom,0px))}
+@media (min-width:520px){.mdl{place-items:center}}
+.dlg{width:100%;max-width:420px;background:var(--card);color:var(--ink);border-radius:24px;padding:20px;box-shadow:0 24px 60px -20px rgba(0,0,0,.55)}
+.dlg h2{margin:0 0 6px}.dbt{display:flex;gap:10px;margin-top:16px}.dbt .cta{margin-top:0;flex:1}
+.qh{display:flex;justify-content:space-between;align-items:center}
+.tm{font-variant-numeric:tabular-nums;font-weight:700;font-size:18px}.tm.warn{color:var(--bad);border-color:var(--bad)}
+/* v18: on-brand loader (OMR bubbles shade in), dimmed unavailable subjects */
+.ldv{min-height:60vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:12px 0}
+.omr{display:flex;gap:14px;margin-bottom:22px}
+.omr span{width:54px;height:54px;border-radius:50%;border:3px solid var(--line);display:grid;place-items:center;font:700 22px 'Plus Jakarta Sans','Hind',sans-serif;color:var(--mute);animation:omrf 2.4s ease-in-out infinite}
+.omr span:nth-child(2){animation-delay:.3s}.omr span:nth-child(3){animation-delay:.6s}.omr span:nth-child(4){animation-delay:.9s}
+@keyframes omrf{0%,10%{background:transparent;border-color:var(--line);color:var(--mute);transform:scale(1)}25%,55%{background:var(--btn);border-color:var(--btn);color:#fff;transform:scale(1.1)}80%,100%{background:transparent;border-color:var(--line);color:var(--mute);transform:scale(1)}}
+.ldv h1{font-size:27px;max-width:17ch;margin:0 0 10px}
+.ldt{min-height:3.4em;max-width:30ch;margin:0 0 14px}
+.ldv .cta{width:auto;padding:12px 28px}
+.sub.soon{opacity:.66}
+@media (prefers-reduced-motion:reduce){.omr span{animation:none}.omr span:first-child{background:var(--btn);border-color:var(--btn);color:#fff}}
+/* v21: animated login, welcome splash, page and home entrances, warmer low-score colour */
+:root{--warn:#D98100}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--warn:#F5B13D}}
+:root[data-theme="dark"]{--warn:#F5B13D}
+@keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes pgin{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes pop{0%{opacity:0;transform:scale(.4) rotate(-14deg)}70%{opacity:1;transform:scale(1.08) rotate(2deg)}100%{opacity:1;transform:none}}
+@keyframes tagc{0%{opacity:0;transform:translateY(8px)}6%,30%{opacity:1;transform:none}36%,100%{opacity:0;transform:translateY(-6px)}}
+@keyframes omrh{0%,10%{background:transparent;border-color:rgba(255,255,255,.38);color:rgba(255,255,255,.8);transform:scale(1)}25%,55%{background:#fff;border-color:#fff;color:var(--hero);transform:scale(1.1)}80%,100%{background:transparent;border-color:rgba(255,255,255,.38);color:rgba(255,255,255,.8);transform:scale(1)}}
+@keyframes draw{to{stroke-dashoffset:0}}
+.pg.anim{animation:pgin .28s ease-out both}
+.pg.anim .rise{animation:rise .6s var(--d,0s) cubic-bezier(.2,.8,.2,1) both}
+.pg.enter h1,.pg.enter .sheet,.pg.enter .hero,.pg.enter .tile,.pg.enter .sub{animation:rise .6s cubic-bezier(.2,.8,.2,1) both}
+.pg.enter .sheet{animation-delay:.06s}.pg.enter .hero{animation-delay:.14s}.pg.enter .tile:nth-child(1){animation-delay:.22s}.pg.enter .tile:nth-child(2){animation-delay:.28s}.pg.enter .tile:nth-child(3){animation-delay:.34s}.pg.enter .tile:nth-child(4){animation-delay:.4s}.pg.enter .sub{animation-delay:.46s}
+.lgh{position:relative;overflow:hidden;color:#fff;border-radius:26px;padding:20px 20px 24px;margin-bottom:22px;background-color:var(--hero);background-image:radial-gradient(circle at 1px 1px,rgba(255,255,255,.2) 1.6px,transparent 2.2px);background-size:20px 20px}
+.lgh::after{content:"";position:absolute;right:-42px;bottom:-52px;width:150px;height:150px;border-radius:50%;border:18px solid rgba(255,255,255,.12)}
+.lgt{display:flex;align-items:center;gap:12px;margin-bottom:20px;position:relative}
+.lgm{display:inline-flex;background:#fff;border-radius:13px;padding:3px}.lgm svg{display:block;width:40px;height:40px}
+.pg.anim .lgm{animation:pop .75s cubic-bezier(.2,.9,.3,1) both}
+.lgn{font:700 30px/1 'Plus Jakarta Sans','Hind','Hind Siliguri',system-ui,sans-serif}
+.lgh .omr{margin:0 0 18px;gap:10px;position:relative}
+.lgh .omr span{width:42px;height:42px;font-size:18px;border-width:2.5px;border-color:rgba(255,255,255,.38);color:rgba(255,255,255,.8);animation-name:omrh}
+.tagw{position:relative;min-height:3.4em;font-size:18px;line-height:1.35}
+.tag{position:absolute;left:0;top:0;right:0;margin:0;opacity:0;animation:tagc 9s infinite}
+.tag.t2{animation-delay:3s}.tag.t3{animation-delay:6s}
+.wlc{min-height:68vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;cursor:pointer;padding:12px 0}
+.wlc .wsv{display:block;margin-bottom:10px}
+.wc{stroke-dasharray:314;stroke-dashoffset:314;animation:draw .75s ease-out forwards}
+.wt{stroke-dasharray:90;stroke-dashoffset:90;animation:draw .5s .65s ease-out forwards}
+.wlc h1{font-size:32px;margin:6px 0 4px;animation:rise .6s .9s both}
+.wlc p{margin:0 0 14px;animation:rise .6s 1.05s both}.wlc .link{animation:rise .6s 1.2s both}
+@media (prefers-reduced-motion:reduce){.pg.anim,.pg.anim .rise,.pg.anim .lgm,.pg.enter h1,.pg.enter .sheet,.pg.enter .hero,.pg.enter .tile,.pg.enter .sub,.wlc h1,.wlc p,.wlc .link{animation:none!important;opacity:1!important;transform:none!important}.wc,.wt{animation:none!important;stroke-dashoffset:0!important}.lgh .omr span{animation:none}.lgh .omr span:first-child{background:#fff;border-color:#fff;color:var(--hero)}.tag{animation:none}.tag.t1{opacity:1}}
+/* v22: modern look - aurora hero, glass product cards, bottom sheet, new type */
+:root{--btn2:#6D4AE0}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--btn2:#7C5CF0}}
+:root[data-theme="dark"]{--btn2:#7C5CF0}
+html[lang="hi"] h1,html[lang="bn"] h1,html[lang="hi"] h2,html[lang="bn"] h2{letter-spacing:0}
+.cta{background:linear-gradient(135deg,var(--btn),var(--btn2));box-shadow:0 14px 26px -16px var(--btn2)}
+@keyframes drift1{to{transform:translate(70px,50px) scale(1.15)}}
+@keyframes drift2{to{transform:translate(-60px,40px) scale(1.2)}}
+@keyframes drift3{to{transform:translate(50px,-50px) scale(1.12)}}
+@keyframes flt{from{transform:translateY(-5px)}to{transform:translateY(6px)}}
+@keyframes fcin{from{opacity:0;transform:translateY(40px) scale(.9)}to{opacity:1;transform:none}}
+@keyframes sheetUp{from{opacity:0;transform:translateY(56px)}to{opacity:1;transform:none}}
+@keyframes okp{0%,38%{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.14)}50%,86%{background:rgba(52,211,153,.28);border-color:rgba(52,211,153,.8)}100%{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.14)}}
+@keyframes plp{0%,100%{background:transparent}50%{background:#67E8F9;border-color:#67E8F9}}
+@keyframes spark{0%{opacity:1;transform:rotate(var(--a)) translateY(-62px) scale(1)}100%{opacity:0;transform:rotate(var(--a)) translateY(-116px) scale(.3)}}
+@keyframes orbp{0%{box-shadow:0 0 0 0 rgba(165,180,252,.55)}100%{box-shadow:0 0 0 38px rgba(165,180,252,0)}}
+@keyframes fillb{to{width:100%}}
+.aur{position:absolute;inset:0;overflow:hidden;background:#0B1030;z-index:0}
+.aur i{position:absolute;border-radius:50%;will-change:transform}
+.aur .b1{width:430px;height:430px;left:-130px;top:-150px;background:radial-gradient(circle,rgba(99,102,241,.95) 0%,rgba(99,102,241,0) 66%);animation:drift1 14s ease-in-out infinite alternate}
+.aur .b2{width:390px;height:390px;right:-150px;top:40px;background:radial-gradient(circle,rgba(168,85,247,.85) 0%,rgba(168,85,247,0) 66%);animation:drift2 17s ease-in-out infinite alternate}
+.aur .b3{width:350px;height:350px;left:6%;bottom:-170px;background:radial-gradient(circle,rgba(56,189,248,.65) 0%,rgba(56,189,248,0) 66%);animation:drift3 19s ease-in-out infinite alternate}
+.lg2{position:relative;margin:-20px -18px 0;padding:20px 18px 64px;color:#fff;overflow:hidden}
+.lg2>*:not(.aur){position:relative;z-index:1}
+.lg2top{display:flex;align-items:center;justify-content:space-between}
+.lg2 h1{color:#fff;font-size:36px;line-height:1.08;letter-spacing:-.02em;font-weight:800;margin:30px 0 12px}
+.gt{display:block;background:linear-gradient(90deg,#A5B4FC,#67E8F9);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hs{margin:0;color:rgba(255,255,255,.76);font-size:17px;max-width:30ch}
+.chip.glass{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.26);box-shadow:none;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.stack{position:relative;height:236px;margin-top:26px}
+.fc{position:absolute;color:#fff;border-radius:22px;padding:12px 14px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:0 24px 44px -24px rgba(0,0,0,.6)}
+.pg.anim .fc{animation:fcin .85s var(--d,0s) cubic-bezier(.2,.9,.3,1.15) both}
+.fc .fl{animation:flt 7s ease-in-out infinite alternate}
+.c1{left:0;top:6px;width:63%}.c2{right:1%;top:0;width:33%;text-align:center}.c2 .fl{animation-duration:6s;animation-delay:-2s}.c3{right:0;bottom:4px;width:57%}.c3 .fl{animation-duration:8s;animation-delay:-4s}
+.c1 small,.c3 small{display:block;color:rgba(255,255,255,.65);font-size:13px}
+.c1 b{display:block;font-size:22px;margin:2px 0 10px;font-weight:800}
+.ops{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.ops span{display:flex;align-items:center;gap:7px;padding:6px 8px;border-radius:11px;font-size:14px;font-weight:700;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14)}
+.ops span.ok{animation:okp 6s 1.4s ease-in-out infinite}
+.ops i{font-style:normal;width:20px;height:20px;border-radius:50%;border:1.5px solid rgba(255,255,255,.55);display:grid;place-items:center;font-size:11px}
+.c2 b{display:block;font-size:19px;font-weight:800;margin-top:2px}
+.mini{display:flex;gap:6px;margin-bottom:8px}.mini i{width:20px;height:20px;border-radius:50%;border:2px solid rgba(255,255,255,.4);display:block}
+.mini i.on{background:#fff;border-color:#fff}.mini i.pl{animation:plp 2.2s ease-in-out infinite}
+.c3 small{font-weight:700;color:#fff;font-size:15px}
+.sheet2{position:relative;z-index:2;background:var(--card);margin:-34px -18px -40px;padding:26px 18px 38px;border-radius:32px 32px 0 0;box-shadow:0 -22px 44px -26px rgba(0,0,0,.55)}
+.pg.anim .sheet2{animation:sheetUp .7s .22s cubic-bezier(.2,.9,.3,1) both}
+.sheet2 h2{margin:0 0 4px;font-size:27px}
+.fld{position:relative;display:block;margin-top:12px}
+.fld .fi{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--mute);display:flex;pointer-events:none}
+.fld .inp{margin-top:0;padding:17px 16px 17px 50px;border-radius:16px;font-size:17px}
+.fld.pwf .inp{padding-right:52px}
+.fld .inp:focus{outline:none;border-color:var(--btn);box-shadow:0 0 0 4px var(--ring)}
+.eye{position:absolute;right:5px;top:50%;transform:translateY(-50%);width:46px;height:46px;border:0;background:none;color:var(--mute);display:grid;place-items:center;border-radius:14px;cursor:pointer}
+.eye.on{color:var(--btn)}
+.fgt{text-align:right;margin:6px 0 14px}.gst{text-align:center;margin:10px 0 0}
+.or{display:flex;align-items:center;gap:12px;color:var(--mute);font-size:14px;margin:16px 0 2px}.or::before,.or::after{content:"";flex:1;height:1px;background:var(--line)}
+.ah{position:relative;overflow:hidden;margin:-20px -18px 0;padding:22px 18px 52px;color:#fff}
+.ah .aur .b1{width:340px;height:340px}.ah .aur .b2{width:300px;height:300px;top:-20px}
+.ah>*:not(.aur){position:relative;z-index:1}.ah .lgt{margin:0}
+.ah+.sheet2{padding-top:22px}
+.hero{background-color:#11183A;background-image:radial-gradient(120% 95% at 0% 0%,rgba(99,102,241,.95),rgba(99,102,241,0) 58%),radial-gradient(90% 90% at 100% 100%,rgba(168,85,247,.8),rgba(168,85,247,0) 58%),radial-gradient(60% 60% at 82% 0%,rgba(56,189,248,.5),rgba(56,189,248,0) 62%);background-size:auto}
+.hero::after{border-color:rgba(255,255,255,.1)}
+.hgo{color:#1B2470}
+.wl2{position:relative;margin:-20px -18px -40px;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;overflow:hidden;cursor:pointer}
+.wl2c{position:relative;z-index:1;padding:24px}
+.orb{position:relative;width:136px;height:136px;margin:0 auto 22px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.26);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);animation:orbp 1.5s 1s ease-out 1}
+.wc{stroke-dasharray:264;stroke-dashoffset:264;animation:draw .8s .15s ease-out forwards}
+.wt{stroke-dasharray:60;stroke-dashoffset:60;animation:draw .5s .8s ease-out forwards}
+.spk{position:absolute;left:50%;top:50%;width:0;height:0}.spk i{position:absolute;left:-3px;top:-3px;width:6px;height:6px;border-radius:50%;background:#A5B4FC;opacity:0;animation:spark .95s 1s ease-out both}
+.spk i:nth-child(even){background:#67E8F9}
+.wl2 h1{color:#fff;font-size:34px;margin:0 0 6px;animation:rise .6s .95s both}
+.wl2 p{margin:0;color:rgba(255,255,255,.76);animation:rise .6s 1.1s both}
+.ldb{width:150px;height:4px;border-radius:4px;background:rgba(255,255,255,.2);margin:22px auto 8px;overflow:hidden}.ldb i{display:block;height:100%;width:0;background:linear-gradient(90deg,#A5B4FC,#67E8F9);animation:fillb 1.8s .1s linear forwards}
+.wl2 .link{color:rgba(255,255,255,.8);animation:rise .6s 1.3s both}
+@media (prefers-reduced-motion:reduce){.aur i,.fc .fl,.ops span.ok,.mini i.pl,.pg.anim .fc,.pg.anim .sheet2,.wl2 h1,.wl2 p,.wl2 .link,.orb,.spk i{animation:none!important}.pg.anim .fc,.pg.anim .sheet2,.wl2 h1,.wl2 p,.wl2 .link{opacity:1!important;transform:none!important}.ldb i{animation:none;width:100%}.spk{display:none}.ops span.ok{background:rgba(52,211,153,.28);border-color:rgba(52,211,153,.8)}}
+.fld.ni{margin-top:12px}.fld.ni .inp{padding:14px 52px 14px 16px;margin-top:0}
+.fld.ni .inp:focus{outline:none;border-color:var(--btn);box-shadow:0 0 0 4px var(--ring)}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<noscript><main style="max-width:520px;margin:0 auto;padding:24px;font-family:system-ui,sans-serif"><h1>Taiyari</h1><p>Taiyari is a free exam-practice app with quizzes, timed mock tests, a mistake notebook and AI questions from your own notes, in English, Hindi and Bengali. Please turn on JavaScript to use it.</p><p><a href="privacy.html">Privacy policy</a> · <a href="terms.html">Terms of use</a> · <a href="delete-account.html">Delete account</a></p></main></noscript>
+<script>
+var LN=["en","hi","bn"],AN=["Taiyari","तैयारी","Taiyari"];
+var T={
+en:{sub:"Pick a subject.",qs:"questions",q:"Question",of:"of",next:"Next question",see:"See result",done:"Quiz complete",you:"You scored",retry:"Try again",home:"All subjects",exams:"Choose your exam",esub:"Pick what you are preparing for.",soon:"Coming soon",soonh:"This exam is being prepared",soonp:"Notes and quizzes for this exam will be added soon. SSC is ready to try now.",allex:"All exams",trySsc:"Try SSC practice",pick:"Choose your language",ok:"Correct!",no:"The correct answer is highlighted in green",notes:"Read notes",prac:"Practice quiz",nh:"Quick notes",yours:"Your answer",right:"Correct answer",why:"Why",rev:"Review your answers",lt:"Log in to save your progress",nm:"Your name",pn:"4-digit PIN",lb:"Log in or create account",gs:"Continue as guest",e1:"Wrong PIN for this name",e2:"Enter a name and a 4-digit PIN",ln:"Progress is saved on this device only.",pg:"My progress",qt:"Quizzes taken",qa2:"Questions answered",qc:"Correct answers",ac:"Accuracy",rc:"Recent quizzes",nn:"No quizzes yet. Take one and your progress will show here.",lo:"Log out",sv:"Saved to your progress",lg2:"Log in to save your results.",em:"Email address",pw:"Password",pw2:"Confirm password",lgn:"Log in",su:"Create account",fp:"Forgot password?",t1:"Create your account",t1r:"Reset your password",d1:"Enter your email and we will send you a code.",send:"Send code",t2:"Enter the code",d2:"We sent a 6-digit code to",oc:"6-digit code",ver:"Verify",rs:"Resend code",demo:"Demo mode: no real email is sent yet. Your code is",t3:"Set a password",d3:"Use at least 6 characters.",cont:"Continue",t4:"Tell us about you",fn:"Your name",dob:"Date of birth",gen:"Gender",gm:"Male",gf:"Female",go:"Other",gn:"Prefer not to say",fin:"Finish",bl:"Back to log in",eem:"Enter a valid email address.",eex:"An account with this email already exists. Please log in.",eno:"No account found for this email.",eot:"Wrong code. Please try again.",eexp:"This code has expired. Please resend.",epw:"Password must be at least 6 characters.",epm:"Passwords do not match.",enm:"Please enter your name.",edb:"Please enter a valid date of birth.",egn:"Please select your gender.",ecr:"Wrong email or password.",wo:"Show only wrong answers",wa:"Show all questions",nw:"No wrong answers. Great job!",tp:"Tap to review answers",nq:"The questions for this quiz were not saved because it was taken before this update. New quizzes show the full review.",mn:"My notes",mnd:"Upload or paste your notes. Questions will come from them.",ntt:"Note title",ntx:"Paste your notes here",upl:"Upload a .txt or PDF file",svn:"Save note",prn:"Practice from this note",dl:"Delete",short:"Add more text. We need at least 4 full sentences.",nonote:"No notes yet. Add your first note above.",pdfh:"PDFs must have selectable text. Photos and scanned pages need OCR, which is coming later.",gnote:"Guest notes disappear when you close the page. Log in to keep them.",big:"File is too large. Maximum 200 KB for text, 5 MB for PDF.",max:"You can keep up to 10 notes. Delete one first.",enet:"Could not reach the server. Check your internet and try again.",erate:"Too many tries. Please wait a minute and try again.",esend:"Something went wrong. Please try again.",sent2:"A new code was sent.",wait:"Please wait…",spam:"Can’t find it? Check your spam folder.",dd:"We sent a verification code to",oc2:"Verification code",aibtn:"Practice with AI",aiw:"Making questions from your notes. This can take up to 30 seconds.",ailog:"Log in to use AI questions.",ailim:"You have used today’s AI quizzes. Try again tomorrow, or use the normal practice button.",aibusy:"The AI is busy right now. Try again in a minute.",aifail:"Could not make questions from this note. Try the normal practice button.",aipr:"AI practice sends your note text to Google’s Gemini service.",tpt:"AI practice",tpd:"Type an exam and topic. AI writes 5 practice questions.",tpi:"e.g. RRB Technician Grade 3 – Basic Science",tpg:"Make questions",aiv:"AI-made questions can contain mistakes. Check answers with your books or official papers.",tpe:"Please type an exam or topic (at least 3 letters).",aiw2:"Writing practice questions. This can take up to 30 seconds.",pdfw:"Reading your PDF…",nopdf:"Could not read text from this PDF. It may be a scan or photo. Paste the text instead.",dla:"Delete my account",dlq:"Delete your account and all your data (profile, quiz history, notes)? This cannot be undone.",dlc:"Yes, delete everything",dlk:"No, keep my account",dld:"Your account was deleted.",dle:"Could not delete your account. Please try again.",rpt:"Report this question",rpd:"Reported. Thank you.",pv:"Privacy",tm:"Terms"},
+hi:{sub:"विषय चुनें।",qs:"प्रश्न",q:"प्रश्न",of:"/",next:"अगला प्रश्न",see:"परिणाम देखें",done:"क्विज़ पूरा हुआ",you:"आपका स्कोर",retry:"फिर से करें",home:"सभी विषय",exams:"अपनी परीक्षा चुनें",esub:"जिसकी तैयारी कर रहे हैं, उसे चुनें।",soon:"जल्द आ रहा है",soonh:"इस परीक्षा की तैयारी चल रही है",soonp:"इस परीक्षा के नोट्स और क्विज़ जल्द जोड़े जाएंगे। SSC अभी आज़माने के लिए तैयार है।",allex:"सभी परीक्षाएं",trySsc:"SSC अभ्यास करें",pick:"अपनी भाषा चुनें",ok:"सही!",no:"सही उत्तर हरे रंग में दिखाया गया है",notes:"नोट्स पढ़ें",prac:"क्विज़ दें",nh:"छोटे नोट्स",yours:"आपका उत्तर",right:"सही उत्तर",why:"स्पष्टीकरण",rev:"अपने उत्तरों की समीक्षा करें",lt:"प्रगति सेव करने के लिए लॉग इन करें",nm:"आपका नाम",pn:"4 अंकों का PIN",lb:"लॉग इन करें या खाता बनाएं",gs:"गेस्ट के रूप में जारी रखें",e1:"इस नाम के लिए PIN गलत है",e2:"नाम और 4 अंकों का PIN दर्ज करें",ln:"प्रगति केवल इसी डिवाइस पर सेव होती है।",pg:"मेरी प्रगति",qt:"क्विज़ दिए",qa2:"हल किए प्रश्न",qc:"सही उत्तर",ac:"सटीकता",rc:"हाल के क्विज़",nn:"अभी कोई क्विज़ नहीं। एक क्विज़ दें, यहां प्रगति दिखेगी।",lo:"लॉग आउट",sv:"आपकी प्रगति में सेव हो गया",lg2:"परिणाम सेव करने के लिए लॉग इन करें।",em:"ईमेल पता",pw:"पासवर्ड",pw2:"पासवर्ड की पुष्टि करें",lgn:"लॉग इन",su:"खाता बनाएं",fp:"पासवर्ड भूल गए?",t1:"अपना खाता बनाएं",t1r:"पासवर्ड रीसेट करें",d1:"अपना ईमेल दर्ज करें, हम आपको एक कोड भेजेंगे।",send:"कोड भेजें",t2:"कोड दर्ज करें",d2:"हमने 6 अंकों का कोड भेजा है:",oc:"6 अंकों का कोड",ver:"सत्यापित करें",rs:"कोड फिर से भेजें",demo:"डेमो मोड: अभी असली ईमेल नहीं भेजा जाता। आपका कोड है",t3:"पासवर्ड सेट करें",d3:"कम से कम 6 अक्षर रखें।",cont:"आगे बढ़ें",t4:"अपने बारे में बताएं",fn:"आपका नाम",dob:"जन्म तिथि",gen:"लिंग",gm:"पुरुष",gf:"महिला",go:"अन्य",gn:"बताना नहीं चाहते",fin:"पूरा करें",bl:"लॉग इन पर वापस जाएं",eem:"सही ईमेल पता दर्ज करें।",eex:"इस ईमेल से खाता पहले से है। कृपया लॉग इन करें।",eno:"इस ईमेल का कोई खाता नहीं मिला।",eot:"कोड गलत है। फिर कोशिश करें।",eexp:"कोड की समय सीमा खत्म हो गई। कृपया फिर से भेजें।",epw:"पासवर्ड कम से कम 6 अक्षर का होना चाहिए।",epm:"पासवर्ड मेल नहीं खाते।",enm:"कृपया अपना नाम दर्ज करें।",edb:"सही जन्म तिथि दर्ज करें।",egn:"कृपया लिंग चुनें।",ecr:"ईमेल या पासवर्ड गलत है।",wo:"सिर्फ़ गलत उत्तर दिखाएं",wa:"सभी प्रश्न दिखाएं",nw:"कोई गलत उत्तर नहीं। बहुत बढ़िया!",tp:"उत्तर देखने के लिए टैप करें",nq:"इस क्विज़ के प्रश्न सेव नहीं हैं, क्योंकि यह इस अपडेट से पहले दिया गया था। नए क्विज़ में पूरी समीक्षा दिखेगी।",mn:"मेरे नोट्स",mnd:"अपने नोट्स अपलोड करें या पेस्ट करें। प्रश्न उन्हीं से बनेंगे।",ntt:"नोट का शीर्षक",ntx:"यहां अपने नोट्स पेस्ट करें",upl:".txt या PDF फ़ाइल अपलोड करें",svn:"नोट सेव करें",prn:"इस नोट से अभ्यास करें",dl:"हटाएं",short:"और टेक्स्ट जोड़ें। कम से कम 4 पूरे वाक्य चाहिए।",nonote:"अभी कोई नोट नहीं। ऊपर पहला नोट जोड़ें।",pdfh:"PDF में चुनने योग्य टेक्स्ट होना चाहिए। फोटो और स्कैन किए पन्नों के लिए OCR चाहिए, जो बाद में आएगा।",gnote:"गेस्ट नोट्स पेज बंद करने पर मिट जाते हैं। रखने के लिए लॉग इन करें।",big:"फ़ाइल बहुत बड़ी है। टेक्स्ट के लिए 200 KB, PDF के लिए 5 MB।",max:"आप अधिकतम 10 नोट्स रख सकते हैं। पहले एक हटाएं।",enet:"सर्वर तक नहीं पहुंच सके। इंटरनेट जांचें और फिर कोशिश करें।",erate:"बहुत ज़्यादा कोशिशें। कृपया एक मिनट रुककर फिर कोशिश करें।",esend:"कुछ गड़बड़ हो गई। कृपया फिर कोशिश करें।",sent2:"नया कोड भेज दिया गया है।",wait:"कृपया प्रतीक्षा करें…",spam:"नहीं मिला? अपना स्पैम फ़ोल्डर देखें।",dd:"हमने वेरिफिकेशन कोड भेजा है:",oc2:"वेरिफिकेशन कोड",aibtn:"AI से अभ्यास करें",aiw:"आपके नोट्स से प्रश्न बन रहे हैं। इसमें 30 सेकंड तक लग सकते हैं।",ailog:"AI प्रश्नों के लिए लॉग इन करें।",ailim:"आज के AI क्विज़ पूरे हो गए। कल फिर कोशिश करें, या सामान्य अभ्यास बटन इस्तेमाल करें।",aibusy:"AI अभी व्यस्त है। एक मिनट बाद फिर कोशिश करें।",aifail:"इस नोट से प्रश्न नहीं बन सके। सामान्य अभ्यास बटन आज़माएं।",aipr:"AI अभ्यास में आपके नोट का टेक्स्ट Google की Gemini सेवा को भेजा जाता है।",tpt:"AI अभ्यास",tpd:"परीक्षा और विषय लिखें। AI 5 अभ्यास प्रश्न बनाएगा।",tpi:"जैसे RRB टेक्नीशियन ग्रेड 3 – बेसिक साइंस",tpg:"प्रश्न बनाएं",aiv:"AI के बनाए प्रश्नों में गलतियां हो सकती हैं। उत्तर अपनी किताबों या आधिकारिक पेपरों से जांचें।",tpe:"कृपया परीक्षा या विषय लिखें (कम से कम 3 अक्षर)।",aiw2:"अभ्यास प्रश्न बन रहे हैं। इसमें 30 सेकंड तक लग सकते हैं।",pdfw:"आपकी PDF पढ़ी जा रही है…",nopdf:"इस PDF से टेक्स्ट नहीं पढ़ सके। यह स्कैन या फोटो हो सकती है। टेक्स्ट पेस्ट करें।",dla:"मेरा खाता हटाएं",dlq:"क्या आप अपना खाता और सारा डेटा (प्रोफ़ाइल, क्विज़ इतिहास, नोट्स) हटाना चाहते हैं? इसे वापस नहीं किया जा सकता।",dlc:"हां, सब कुछ हटाएं",dlk:"नहीं, खाता रखें",dld:"आपका खाता हटा दिया गया है।",dle:"खाता नहीं हटाया जा सका। कृपया फिर कोशिश करें।",rpt:"इस प्रश्न की रिपोर्ट करें",rpd:"रिपोर्ट हो गई। धन्यवाद।",pv:"गोपनीयता",tm:"शर्तें"},
+bn:{sub:"একটি বিষয় বেছে নিন।",qs:"প্রশ্ন",q:"প্রশ্ন",of:"/",next:"পরের প্রশ্ন",see:"ফলাফল দেখুন",done:"কুইজ শেষ",you:"আপনার স্কোর",retry:"আবার করুন",home:"সব বিষয়",exams:"আপনার পরীক্ষা বেছে নিন",esub:"যে পরীক্ষার প্রস্তুতি নিচ্ছেন সেটি বেছে নিন।",soon:"শীঘ্রই আসছে",soonh:"এই পরীক্ষার প্রস্তুতি চলছে",soonp:"এই পরীক্ষার নোট ও কুইজ শীঘ্রই যোগ হবে। SSC এখনই চেষ্টা করতে পারেন।",allex:"সব পরীক্ষা",trySsc:"SSC অনুশীলন করুন",pick:"আপনার ভাষা বেছে নিন",ok:"সঠিক!",no:"সঠিক উত্তর সবুজ রঙে দেখানো হয়েছে",notes:"নোট পড়ুন",prac:"কুইজ দিন",nh:"সংক্ষিপ্ত নোট",yours:"আপনার উত্তর",right:"সঠিক উত্তর",why:"ব্যাখ্যা",rev:"আপনার উত্তর যাচাই করুন",lt:"অগ্রগতি সেভ করতে লগ ইন করুন",nm:"আপনার নাম",pn:"4 অঙ্কের PIN",lb:"লগ ইন করুন বা অ্যাকাউন্ট খুলুন",gs:"গেস্ট হিসেবে চালিয়ে যান",e1:"এই নামের জন্য PIN ভুল",e2:"নাম ও 4 অঙ্কের PIN দিন",ln:"অগ্রগতি শুধু এই ডিভাইসেই সেভ হয়।",pg:"আমার অগ্রগতি",qt:"কুইজ দেওয়া হয়েছে",qa2:"উত্তর দেওয়া প্রশ্ন",qc:"সঠিক উত্তর",ac:"সঠিকতার হার",rc:"সাম্প্রতিক কুইজ",nn:"এখনও কোনো কুইজ নেই। একটি কুইজ দিন, এখানে অগ্রগতি দেখা যাবে।",lo:"লগ আউট",sv:"আপনার অগ্রগতিতে সেভ হয়েছে",lg2:"ফলাফল সেভ করতে লগ ইন করুন।",em:"ইমেইল ঠিকানা",pw:"পাসওয়ার্ড",pw2:"পাসওয়ার্ড নিশ্চিত করুন",lgn:"লগ ইন",su:"অ্যাকাউন্ট খুলুন",fp:"পাসওয়ার্ড ভুলে গেছেন?",t1:"আপনার অ্যাকাউন্ট খুলুন",t1r:"পাসওয়ার্ড রিসেট করুন",d1:"আপনার ইমেইল দিন, আমরা একটি কোড পাঠাব।",send:"কোড পাঠান",t2:"কোডটি দিন",d2:"আমরা 6 অঙ্কের কোড পাঠিয়েছি:",oc:"6 অঙ্কের কোড",ver:"যাচাই করুন",rs:"আবার কোড পাঠান",demo:"ডেমো মোড: এখনও আসল ইমেইল যায় না। আপনার কোড",t3:"পাসওয়ার্ড সেট করুন",d3:"কমপক্ষে 6টি অক্ষর ব্যবহার করুন।",cont:"এগিয়ে যান",t4:"আপনার সম্পর্কে বলুন",fn:"আপনার নাম",dob:"জন্ম তারিখ",gen:"লিঙ্গ",gm:"পুরুষ",gf:"মহিলা",go:"অন্যান্য",gn:"বলতে চাই না",fin:"শেষ করুন",bl:"লগ ইনে ফিরে যান",eem:"সঠিক ইমেইল ঠিকানা দিন।",eex:"এই ইমেইলে অ্যাকাউন্ট আগে থেকেই আছে। অনুগ্রহ করে লগ ইন করুন।",eno:"এই ইমেইলের কোনো অ্যাকাউন্ট পাওয়া যায়নি।",eot:"কোডটি ভুল। আবার চেষ্টা করুন।",eexp:"কোডের মেয়াদ শেষ। অনুগ্রহ করে আবার পাঠান।",epw:"পাসওয়ার্ড কমপক্ষে 6 অক্ষরের হতে হবে।",epm:"পাসওয়ার্ড মিলছে না।",enm:"অনুগ্রহ করে আপনার নাম দিন।",edb:"সঠিক জন্ম তারিখ দিন।",egn:"অনুগ্রহ করে লিঙ্গ বেছে নিন।",ecr:"ইমেইল বা পাসওয়ার্ড ভুল।",wo:"শুধু ভুল উত্তর দেখান",wa:"সব প্রশ্ন দেখান",nw:"কোনো ভুল উত্তর নেই। চমৎকার!",tp:"উত্তর দেখতে ট্যাপ করুন",nq:"এই কুইজের প্রশ্ন সেভ করা নেই, কারণ এটি এই আপডেটের আগে দেওয়া হয়েছিল। নতুন কুইজে পূর্ণ যাচাই দেখা যাবে।",mn:"আমার নোট",mnd:"আপনার নোট আপলোড বা পেস্ট করুন। প্রশ্ন সেখান থেকেই আসবে।",ntt:"নোটের শিরোনাম",ntx:"এখানে আপনার নোট পেস্ট করুন",upl:".txt বা PDF ফাইল আপলোড করুন",svn:"নোট সেভ করুন",prn:"এই নোট থেকে অনুশীলন করুন",dl:"মুছুন",short:"আরও লেখা যোগ করুন। কমপক্ষে 4টি পূর্ণ বাক্য দরকার।",nonote:"এখনও কোনো নোট নেই। উপরে প্রথম নোট যোগ করুন।",pdfh:"PDF-এ নির্বাচনযোগ্য লেখা থাকতে হবে। ছবি ও স্ক্যান করা পাতার জন্য OCR লাগবে, যা পরে আসবে।",gnote:"গেস্ট নোট পেজ বন্ধ করলে মুছে যায়। রাখতে লগ ইন করুন।",big:"ফাইল অনেক বড়। টেক্সটের জন্য 200 KB, PDF-এর জন্য 5 MB।",max:"আপনি সর্বোচ্চ 10টি নোট রাখতে পারেন। আগে একটি মুছুন।",enet:"সার্ভারে পৌঁছানো যায়নি। ইন্টারনেট দেখে আবার চেষ্টা করুন।",erate:"অনেকবার চেষ্টা হয়েছে। এক মিনিট অপেক্ষা করে আবার চেষ্টা করুন।",esend:"কিছু একটা ভুল হয়েছে। আবার চেষ্টা করুন।",sent2:"নতুন কোড পাঠানো হয়েছে।",wait:"অনুগ্রহ করে অপেক্ষা করুন…",spam:"খুঁজে পাচ্ছেন না? স্প্যাম ফোল্ডার দেখুন।",dd:"আমরা যাচাইকরণ কোড পাঠিয়েছি:",oc2:"যাচাইকরণ কোড",aibtn:"AI দিয়ে অনুশীলন করুন",aiw:"আপনার নোট থেকে প্রশ্ন তৈরি হচ্ছে। এতে 30 সেকেন্ড পর্যন্ত লাগতে পারে।",ailog:"AI প্রশ্নের জন্য লগ ইন করুন।",ailim:"আজকের AI কুইজ শেষ। কাল আবার চেষ্টা করুন, বা সাধারণ অনুশীলন বোতাম ব্যবহার করুন।",aibusy:"AI এখন ব্যস্ত। এক মিনিট পরে আবার চেষ্টা করুন।",aifail:"এই নোট থেকে প্রশ্ন তৈরি করা যায়নি। সাধারণ অনুশীলন বোতাম চেষ্টা করুন।",aipr:"AI অনুশীলনে আপনার নোটের লেখা Google-এর Gemini সেবায় পাঠানো হয়।",tpt:"AI অনুশীলন",tpd:"পরীক্ষা ও বিষয় লিখুন। AI 5টি অনুশীলন প্রশ্ন তৈরি করবে।",tpi:"যেমন RRB টেকনিশিয়ান গ্রেড 3 – বেসিক সায়েন্স",tpg:"প্রশ্ন তৈরি করুন",aiv:"AI-এর তৈরি প্রশ্নে ভুল থাকতে পারে। উত্তর আপনার বই বা অফিসিয়াল পেপারের সাথে মিলিয়ে নিন।",tpe:"অনুগ্রহ করে পরীক্ষা বা বিষয় লিখুন (কমপক্ষে 3টি অক্ষর)।",aiw2:"অনুশীলন প্রশ্ন তৈরি হচ্ছে। এতে 30 সেকেন্ড পর্যন্ত লাগতে পারে।",pdfw:"আপনার PDF পড়া হচ্ছে…",nopdf:"এই PDF থেকে লেখা পড়া যায়নি। এটি স্ক্যান বা ছবি হতে পারে। লেখা পেস্ট করুন।",dla:"আমার অ্যাকাউন্ট মুছুন",dlq:"আপনার অ্যাকাউন্ট ও সব ডেটা (প্রোফাইল, কুইজের ইতিহাস, নোট) মুছে ফেলবেন? এটি আর ফেরানো যাবে না।",dlc:"হ্যাঁ, সব মুছুন",dlk:"না, অ্যাকাউন্ট রাখুন",dld:"আপনার অ্যাকাউন্ট মুছে ফেলা হয়েছে।",dle:"অ্যাকাউন্ট মুছতে পারিনি। আবার চেষ্টা করুন।",rpt:"এই প্রশ্নটি রিপোর্ট করুন",rpd:"রিপোর্ট হয়েছে। ধন্যবাদ।",pv:"গোপনীয়তা",tm:"শর্তাবলী"}};
+Object.assign(T.en,{sure:"Are you sure?",surep:"If you leave now, your answers in this quiz will be lost.",ysl:"Yes",nol:"No",gh:"Hi",wel:"Welcome to Taiyari",stkd:"day streak",stk0:"Practise today to start a streak",m1:"Great work!",m2:"Good effort. Review the ones you missed.",m3:"Keep going. Review each answer below.",wkl:"Your week"});Object.assign(T.hi,{sure:"क्या आप पक्के हैं?",surep:"अभी बाहर जाने पर इस क्विज़ में दिए आपके उत्तर मिट जाएंगे।",ysl:"हां",nol:"नहीं",gh:"नमस्ते",wel:"तैयारी में आपका स्वागत है",stkd:"दिन की लगातार प्रैक्टिस",stk0:"आज अभ्यास करके स्ट्रीक शुरू करें",m1:"बहुत बढ़िया!",m2:"अच्छा प्रयास। छूटे हुए प्रश्न दोबारा देखें।",m3:"लगे रहें। नीचे हर उत्तर देखें।",wkl:"आपका सप्ताह"});Object.assign(T.bn,{sure:"আপনি কি নিশ্চিত?",surep:"এখন বেরিয়ে গেলে এই কুইজে দেওয়া আপনার উত্তর মুছে যাবে।",ysl:"হ্যাঁ",nol:"না",gh:"নমস্কার",wel:"তৈয়ারিতে স্বাগতম",stkd:"দিনের টানা অনুশীলন",stk0:"আজ অনুশীলন করে ধারা শুরু করুন",m1:"চমৎকার!",m2:"ভালো চেষ্টা। যেগুলো ভুল হয়েছে সেগুলো দেখুন।",m3:"চালিয়ে যান। নিচে প্রতিটি উত্তর দেখুন।",wkl:"আপনার সপ্তাহ"});
+Object.assign(T.en,{mkt:"Mistake notebook",mkd:"Wrong answers collect here",mkc:"to review",mke:"No mistakes to review. Questions you get wrong will appear here.",mkp:"Practise my mistakes",mtt:"Mock test",mtd:"Timed, mixed questions with marking",mtq:"Quick mock",mtqm:"10 questions · 8 minutes",mtf:"Full mock",mtfm:"20 questions · 15 minutes",mti:"Questions from all four subjects with a countdown timer. +1 for right, −0.25 for wrong, 0 if skipped. You can skip and come back.",tmo:"Time is up!",skp:"Not answered",skb:"Skip",cor:"Correct",wrg:"Wrong",skd:"Skipped",mks:"Marks",tmt:"Time",shr:"Share result",shf:"Practise free on Taiyari",bkerr:"Questions for this subject are not available yet. Please try again later.",ldq:"Loading questions…",prv:"Previous",sbm:"Submit test"});Object.assign(T.hi,{mkt:"गलतियों की नोटबुक",mkd:"गलत उत्तर यहां जमा होते हैं",mkc:"दोहराने के लिए",mke:"दोहराने के लिए कोई गलती नहीं। जो प्रश्न गलत होंगे वे यहां दिखेंगे।",mkp:"अपनी गलतियां दोहराएं",mtt:"मॉक टेस्ट",mtd:"समय-सीमा और अंकन के साथ मिले-जुले प्रश्न",mtq:"क्विक मॉक",mtqm:"10 प्रश्न · 8 मिनट",mtf:"फुल मॉक",mtfm:"20 प्रश्न · 15 मिनट",mti:"चारों विषयों के प्रश्न, उलटी गिनती वाले टाइमर के साथ। सही पर +1, गलत पर −0.25, छोड़ने पर 0। आप प्रश्न छोड़कर बाद में लौट सकते हैं।",tmo:"समय समाप्त!",skp:"उत्तर नहीं दिया",skb:"छोड़ें",cor:"सही",wrg:"गलत",skd:"छोड़े गए",mks:"अंक",tmt:"समय",shr:"नतीजा शेयर करें",shf:"तैयारी पर मुफ़्त अभ्यास करें",bkerr:"इस विषय के प्रश्न अभी उपलब्ध नहीं हैं। कृपया बाद में कोशिश करें।",ldq:"प्रश्न लोड हो रहे हैं…",prv:"पिछला",sbm:"टेस्ट जमा करें"});Object.assign(T.bn,{mkt:"ভুলের খাতা",mkd:"ভুল উত্তর এখানে জমা হয়",mkc:"দেখে নেওয়ার জন্য",mke:"দেখে নেওয়ার মতো কোনো ভুল নেই। যে প্রশ্নগুলো ভুল হবে সেগুলো এখানে দেখা যাবে।",mkp:"আমার ভুলগুলো অনুশীলন করুন",mtt:"মক টেস্ট",mtd:"সময়সীমা ও নম্বরসহ মিশ্র প্রশ্ন",mtq:"কুইক মক",mtqm:"10টি প্রশ্ন · 8 মিনিট",mtf:"ফুল মক",mtfm:"20টি প্রশ্ন · 15 মিনিট",mti:"চারটি বিষয়ের প্রশ্ন, কাউন্টডাউন টাইমারসহ। ঠিক হলে +1, ভুল হলে −0.25, বাদ দিলে 0। প্রশ্ন বাদ দিয়ে পরে ফিরে আসতে পারবেন।",tmo:"সময় শেষ!",skp:"উত্তর দেওয়া হয়নি",skb:"বাদ দিন",cor:"ঠিক",wrg:"ভুল",skd:"বাদ",mks:"নম্বর",tmt:"সময়",shr:"ফলাফল শেয়ার করুন",shf:"তৈয়ারিতে বিনামূল্যে অনুশীলন করুন",bkerr:"এই বিষয়ের প্রশ্ন এখনও পাওয়া যাচ্ছে না। পরে আবার চেষ্টা করুন।",ldq:"প্রশ্ন লোড হচ্ছে…",prv:"আগের",sbm:"টেস্ট জমা দিন"});
+Object.assign(T.en,{bksoon:"No questions here yet. Please check back soon.",cnl:"Cancel"});Object.assign(T.hi,{bksoon:"यहां अभी प्रश्न नहीं हैं। कृपया जल्द फिर देखें।",cnl:"रद्द करें"});Object.assign(T.bn,{bksoon:"এখানে এখনও প্রশ্ন নেই। শীঘ্রই আবার দেখুন।",cnl:"বাতিল"});
+Object.assign(T.en,{tg1:"Practise a little every day.",tg2:"Mock tests, a mistake notebook and AI questions.",tg3:"Free for every student.",wlc:"You are all set. Let us practise.",shc:"Can you beat my score?"});Object.assign(T.hi,{tg1:"रोज़ थोड़ा-थोड़ा अभ्यास करें।",tg2:"मॉक टेस्ट, गलतियों की नोटबुक और AI प्रश्न।",tg3:"हर विद्यार्थी के लिए मुफ़्त।",wlc:"सब तैयार है। चलिए अभ्यास करें।",shc:"क्या आप मेरा स्कोर पार कर सकते हैं?"});Object.assign(T.bn,{tg1:"রোজ একটু একটু অনুশীলন করুন।",tg2:"মক টেস্ট, ভুলের খাতা ও AI প্রশ্ন।",tg3:"প্রতিটি শিক্ষার্থীর জন্য বিনামূল্যে।",wlc:"সব প্রস্তুত। চলুন অনুশীলন করি।",shc:"আপনি কি আমার স্কোর ছাড়িয়ে যেতে পারবেন?"});
+Object.assign(T.en,{hd1:"Practise smarter,",hd2:"every single day.",hs:"Quizzes, mock tests, a mistake notebook and AI questions. Free.",lsb:"Log in to save your progress on every device.",shw:"Show password",hdp:"Hide password",or:"or"});Object.assign(T.hi,{hd1:"समझदारी से अभ्यास करें,",hd2:"हर एक दिन।",hs:"क्विज़, मॉक टेस्ट, गलतियों की नोटबुक और AI प्रश्न। मुफ़्त।",lsb:"हर डिवाइस पर अपनी प्रगति सेव करने के लिए लॉग इन करें।",shw:"पासवर्ड दिखाएं",hdp:"पासवर्ड छिपाएं",or:"या"});Object.assign(T.bn,{hd1:"বুদ্ধিমানের মতো অনুশীলন করুন,",hd2:"প্রতিদিন।",hs:"কুইজ, মক টেস্ট, ভুলের খাতা ও AI প্রশ্ন। বিনামূল্যে।",lsb:"প্রতিটি ডিভাইসে অগ্রগতি সেভ করতে লগ ইন করুন।",shw:"পাসওয়ার্ড দেখান",hdp:"পাসওয়ার্ড লুকান",or:"অথবা"});
+var E=[{id:"ssc",ic:"S",n:["SSC","SSC","SSC"],d:["CGL · CHSL","CGL · CHSL","CGL · CHSL"],live:1},{id:"jee",ic:"J",n:["JEE / NEET","JEE / NEET","JEE / NEET"],d:["Physics · Chemistry · Biology · Maths","भौतिकी · रसायन · जीव विज्ञान · गणित","পদার্থ · রসায়ন · জীব · গণিত"],live:1},{id:"brd",ic:"B",n:["Boards","बोर्ड परीक्षा","বোর্ড পরীক্ষা"],d:["Class 10 Science & Maths","कक्षा 10 विज्ञान और गणित","দশম শ্রেণি বিজ্ঞান ও গণিত"],live:1},{id:"stj",ic:"G",n:["State Jobs","राज्य की नौकरियां","রাজ্যের চাকরি"],d:["Aptitude & General Knowledge","अभियोग्यता और सामान्य ज्ञान","অ্যাপটিটিউড ও সাধারণ জ্ঞান"],live:1}];
+var BS=[{id:"phy",ex:"jee",ic:"P",bank:1,n:["Physics","भौतिक विज्ञान","পদার্থবিজ্ঞান"]},{id:"che",ex:"jee",ic:"C",bank:1,n:["Chemistry","रसायन विज्ञान","রসায়ন"]},{id:"bio",ex:"jee",ic:"B",bank:1,n:["Biology","जीव विज्ञान","জীববিজ্ঞান"]},{id:"mth",ex:"jee",ic:"M",bank:1,n:["Mathematics","गणित","গণিত"]},{id:"sci",ex:"brd",ic:"S",bank:1,n:["Science (Class 10)","विज्ञान (कक्षा 10)","বিজ্ঞান (দশম শ্রেণি)"]},{id:"mat",ex:"brd",ic:"M",bank:1,n:["Maths (Class 10)","गणित (कक्षा 10)","গণিত (দশম শ্রেণি)"]},{id:"gk",ex:"stj",ic:"G",bank:1,n:["General Knowledge","सामान्य ज्ञान","সাধারণ জ্ঞান"]}];
+var N4=["15","20","25","30"];
+var S=[
+{id:"qa",ic:"∑",n:["Quantitative Aptitude","संख्यात्मक अभियोग्यता","পরিমাণগত দক্ষতা"],
+ nt:[["x% of N = N × x ÷ 100.","Profit % = (Profit ÷ Cost price) × 100.","Two people working together: time = (a × b) ÷ (a + b)."],["N का x% = N × x ÷ 100।","लाभ % = (लाभ ÷ क्रय मूल्य) × 100।","साथ में काम: समय = (a × b) ÷ (a + b)।"],["N-এর x% = N × x ÷ 100।","লাভ % = (লাভ ÷ ক্রয়মূল্য) × 100।","একসাথে কাজ: সময় = (a × b) ÷ (a + b)।"]],
+ q:[{t:["What is 20% of 150?","150 का 20% कितना होता है?","150-এর 20% কত?"],o:[["20","30","25","35"]],a:1},
+ {t:["An item bought for ₹200 is sold for ₹250. What is the profit percent?","₹200 में खरीदी वस्तु ₹250 में बेची गई। लाभ प्रतिशत क्या है?","₹200-তে কেনা জিনিস ₹250-তে বিক্রি হল। লাভের শতকরা হার কত?"],o:[["20%","25%","30%","50%"]],a:1},
+ {t:["A can do a job in 10 days and B in 15 days. Together, how many days?","A काम को 10 दिन में और B 15 दिन में करता है। साथ में कितने दिन लगेंगे?","A কাজটি 10 দিনে এবং B 15 দিনে করে। একসঙ্গে কত দিন লাগবে?"],o:[["5","6","8","12"]],a:1},
+ {t:["What is the average of 10, 20 and 30?","10, 20 और 30 का औसत क्या है?","10, 20 এবং 30-এর গড় কত?"],o:[N4],a:1}]},
+{id:"re",ic:"?",n:["Reasoning","तर्कशक्ति","যুক্তিবিদ্যা"],
+ nt:[["Series: check the difference or ratio between numbers.","Coding-decoding: find the rule for one letter, then apply it to all.","Odd one out: find the group most items belong to."],["श्रृंखला: संख्याओं के बीच अंतर या अनुपात देखें।","कोडिंग-डिकोडिंग: एक अक्षर का नियम खोजें, फिर सब पर लगाएं।","अलग चुनें: जिस समूह में ज़्यादातर आते हैं, उसे पहचानें।"],["ধারা: সংখ্যাগুলির মধ্যে পার্থক্য বা অনুপাত দেখুন।","কোডিং-ডিকোডিং: একটি অক্ষরের নিয়ম খুঁজে সব অক্ষরে প্রয়োগ করুন।","বেমানান: যে দলে বেশিরভাগ পড়ে, তা চিনুন।"]],
+ q:[{t:["Find the next number: 2, 4, 8, 16, ?","अगली संख्या ज्ञात करें: 2, 4, 8, 16, ?","পরের সংখ্যা কত? 2, 4, 8, 16, ?"],o:[["24","30","32","34"]],a:2},
+ {t:["Which one is different?","कौन सा अलग है?","কোনটি আলাদা?"],o:[["Apple","Mango","Carrot","Banana"],["सेब","आम","गाजर","केला"],["আপেল","আম","গাজর","কলা"]],a:2},
+ {t:["If CAT is written as DBU, how is DOG written?","यदि CAT को DBU लिखा जाए, तो DOG को कैसे लिखेंगे?","CAT-কে DBU লিখলে DOG কীভাবে লেখা হবে?"],o:[["EPH","EOH","DPH","FPH"]],a:0},
+ {t:["Complete the series: A, C, E, G, ?","श्रृंखला पूरी करें: A, C, E, G, ?","ধারাটি পূরণ করুন: A, C, E, G, ?"],o:[["H","I","J","K"]],a:1}]},
+{id:"en",ic:"A",n:["English","अंग्रेज़ी","ইংরেজি"],
+ nt:[["Synonyms mean the same; antonyms mean the opposite.","A singular subject takes a singular verb: She goes.","Read the whole sentence before picking an answer."],["समानार्थी शब्दों का अर्थ एक जैसा, विलोम का उल्टा होता है।","एकवचन कर्ता के साथ एकवचन क्रिया: She goes.","उत्तर चुनने से पहले पूरा वाक्य पढ़ें।"],["সমার্থক শব্দের অর্থ একই, বিপরীতার্থকের অর্থ উল্টো।","একবচন কর্তার সঙ্গে একবচন ক্রিয়া: She goes.","উত্তর বাছার আগে পুরো বাক্য পড়ুন।"]],
+ q:[{t:["Choose the synonym of “Rapid”.","“Rapid” का समानार्थी शब्द चुनें।","“Rapid”-এর সমার্থক শব্দ বেছে নিন।"],o:[["Slow","Quick","Weak","Calm"]],a:1},
+ {t:["Choose the antonym of “Ancient”.","“Ancient” का विलोम शब्द चुनें।","“Ancient”-এর বিপরীত শব্দ বেছে নিন।"],o:[["Old","Modern","Historic","Classic"]],a:1},
+ {t:["She ___ to school every day.","She ___ to school every day. (सही शब्द चुनें)","She ___ to school every day. (সঠিক শব্দ বেছে নিন)"],o:[["go","going","goes","gone"]],a:2},
+ {t:["Choose the correctly spelled word.","सही वर्तनी वाला शब्द चुनें।","সঠিক বানান বেছে নিন।"],o:[["Recieve","Receive","Receeve","Receve"]],a:1}]},
+{id:"ga",ic:"G",n:["General Awareness","सामान्य जागरूकता","সাধারণ জ্ঞান"],
+ nt:[["Dr. B. R. Ambedkar chaired the Constitution’s Drafting Committee.","Jupiter is the largest planet. Water is H2O.","Revise one small topic daily instead of everything at once."],["डॉ. बी. आर. अंबेडकर संविधान की प्रारूप समिति के अध्यक्ष थे।","बृहस्पति सबसे बड़ा ग्रह है। जल का सूत्र H2O है।","सब कुछ एक साथ पढ़ने के बजाय रोज़ एक छोटा विषय दोहराएं।"],["ডঃ বি. আর. আম্বেদকর সংবিধানের খসড়া কমিটির সভাপতি ছিলেন।","বৃহস্পতি সবচেয়ে বড় গ্রহ। জলের সূত্র H2O।","সব একসাথে না পড়ে রোজ একটি ছোট বিষয় ঝালিয়ে নিন।"]],
+ q:[{t:["Who chaired the Drafting Committee of the Indian Constitution?","भारतीय संविधान की प्रारूप समिति के अध्यक्ष कौन थे?","ভারতীয় সংবিধানের খসড়া কমিটির সভাপতি কে ছিলেন?"],o:[["Dr. B. R. Ambedkar","Jawaharlal Nehru","Sardar Patel","Dr. Rajendra Prasad"],["डॉ. बी. आर. अंबेडकर","जवाहरलाल नेहरू","सरदार पटेल","डॉ. राजेंद्र प्रसाद"],["ডঃ বি. আর. আম্বেদকর","জওহরলাল নেহরু","সর্দার প্যাটেল","ডঃ রাজেন্দ্র প্রসাদ"]],a:0},
+ {t:["Which is the largest planet in our solar system?","हमारे सौरमंडल का सबसे बड़ा ग्रह कौन सा है?","আমাদের সৌরজগতের সবচেয়ে বড় গ্রহ কোনটি?"],o:[["Earth","Saturn","Jupiter","Mars"],["पृथ्वी","शनि","बृहस्पति","मंगल"],["পৃথিবী","শনি","বৃহস্পতি","মঙ্গল"]],a:2},
+ {t:["What is the chemical formula of water?","जल का रासायनिक सूत्र क्या है?","জলের রাসায়নিক সূত্র কী?"],o:[["CO2","H2O","O2","NaCl"]],a:1},
+ {t:["Which is the national animal of India?","भारत का राष्ट्रीय पशु कौन सा है?","ভারতের জাতীয় পশু কোনটি?"],o:[["Lion","Tiger","Elephant","Leopard"],["शेर","बाघ","हाथी","तेंदुआ"],["সিংহ","বাঘ","হাতি","চিতাবাঘ"]],a:1}]}
+];
+var NQ={
+qa:{t:["A train runs at 60 km/h. How far does it go in 3 hours?","एक ट्रेन 60 किमी/घंटा की चाल से चलती है। 3 घंटे में वह कितनी दूरी तय करेगी?","একটি ট্রেন ঘণ্টায় 60 কিমি বেগে চলে। 3 ঘণ্টায় কত দূরত্ব যাবে?"],o:[["120","150","180","200"]],a:2},
+re:{t:["Which number is different: 2, 3, 5, 9, 11?","कौन सी संख्या अलग है: 2, 3, 5, 9, 11?","কোন সংখ্যাটি আলাদা: 2, 3, 5, 9, 11?"],o:[["3","5","9","11"]],a:2},
+en:{t:["Fill in the blank: He is ___ honest man.","रिक्त स्थान भरें: He is ___ honest man.","শূন্যস্থান পূরণ করুন: He is ___ honest man."],o:[["a","an","the","—"]],a:1},
+ga:{t:["How many states are there in India?","भारत में कितने राज्य हैं?","ভারতে কয়টি রাজ্য আছে?"],o:[["25","28","29","30"]],a:1}};
+var EX={
+qa:[["150 × 20 ÷ 100 = 30."],["Profit = 250 − 200 = 50. Profit % = 50 ÷ 200 × 100 = 25%.","लाभ = 250 − 200 = 50। लाभ % = 50 ÷ 200 × 100 = 25%।","লাভ = 250 − 200 = 50। লাভ % = 50 ÷ 200 × 100 = 25%।"],["Together = (10 × 15) ÷ (10 + 15) = 150 ÷ 25 = 6 days.","साथ में = (10 × 15) ÷ (10 + 15) = 150 ÷ 25 = 6 दिन।","একসঙ্গে = (10 × 15) ÷ (10 + 15) = 150 ÷ 25 = 6 দিন।"],["(10 + 20 + 30) ÷ 3 = 20."],["Distance = Speed × Time = 60 × 3 = 180.","दूरी = चाल × समय = 60 × 3 = 180।","দূরত্ব = বেগ × সময় = 60 × 3 = 180।"]],
+re:[["Each number is double the one before: 16 × 2 = 32.","हर संख्या पिछली की दोगुनी है: 16 × 2 = 32।","প্রতিটি সংখ্যা আগেরটির দ্বিগুণ: 16 × 2 = 32।"],["Apple, mango and banana are fruits. Carrot is a vegetable.","सेब, आम और केला फल हैं। गाजर सब्ज़ी है।","আপেল, আম ও কলা ফল। গাজর সবজি।"],["Each letter moves one step forward: D→E, O→P, G→H. So DOG = EPH.","हर अक्षर एक स्थान आगे बढ़ता है: D→E, O→P, G→H। इसलिए DOG = EPH।","প্রতিটি অক্ষর এক ধাপ এগোয়: D→E, O→P, G→H। তাই DOG = EPH।"],["One letter is skipped each time, so after G (skipping H) comes I.","हर बार एक अक्षर छूटता है, इसलिए G के बाद (H छोड़कर) I आता है।","প্রতিবার একটি অক্ষর বাদ যায়, তাই G-এর পর (H বাদ দিয়ে) I।"],["All the others are prime numbers. 9 is divisible by 3.","बाकी सभी अभाज्य संख्याएं हैं। 9, 3 से विभाज्य है।","বাকি সব মৌলিক সংখ্যা। 9 সংখ্যাটি 3 দ্বারা বিভাজ্য।"]],
+en:[["“Rapid” means fast, so “Quick” is the synonym.","“Rapid” का अर्थ तेज़ है, इसलिए “Quick” समानार्थी है।","“Rapid” মানে দ্রুত, তাই “Quick” সমার্থক।"],["“Ancient” means very old. Its opposite is “Modern”.","“Ancient” का अर्थ बहुत पुराना है। इसका विलोम “Modern” है।","“Ancient” মানে অতি প্রাচীন। এর বিপরীত “Modern”।"],["“She” is singular, so the verb takes -s: goes.","“She” एकवचन है, इसलिए क्रिया में -s लगता है: goes।","“She” একবচন, তাই ক্রিয়ার সঙ্গে -s বসে: goes।"],["Remember: “ei” comes after “c”. The correct word is Receive.","याद रखें: “c” के बाद “ei” आता है। सही शब्द: Receive।","মনে রাখুন: “c”-এর পরে “ei” বসে। সঠিক শব্দ: Receive।"],["“Honest” starts with a vowel sound (h is silent), so we use “an”.","“Honest” की ध्वनि स्वर से शुरू होती है (h मौन है), इसलिए “an” आता है।","“Honest”-এর উচ্চারণ স্বরধ্বনি দিয়ে শুরু (h নীরব), তাই “an” বসে।"]],
+ga:[["Dr. B. R. Ambedkar chaired the Drafting Committee of the Constituent Assembly.","डॉ. बी. आर. अंबेडकर संविधान सभा की प्रारूप समिति के अध्यक्ष थे।","ডঃ বি. আর. আম্বেদকর গণপরিষদের খসড়া কমিটির সভাপতি ছিলেন।"],["Jupiter is the largest planet in the solar system.","बृहस्पति सौरमंडल का सबसे बड़ा ग्रह है।","বৃহস্পতি সৌরজগতের সবচেয়ে বড় গ্রহ।"],["Water has 2 hydrogen atoms and 1 oxygen atom: H2O.","जल में 2 हाइड्रोजन और 1 ऑक्सीजन परमाणु होते हैं: H2O।","জলে 2টি হাইড্রোজেন ও 1টি অক্সিজেন পরমাণু থাকে: H2O।"],["The Tiger is India’s national animal.","बाघ भारत का राष्ट्रीय पशु है।","বাঘ ভারতের জাতীয় পশু।"],["India has 28 states and 8 Union Territories.","भारत में 28 राज्य और 8 केंद्रशासित प्रदेश हैं।","ভারতে 28টি রাজ্য ও 8টি কেন্দ্রশাসিত অঞ্চল আছে।"]]};
+S.forEach(function(s){s.q.push(NQ[s.id]);s.q.forEach(function(q,k){q.e=EX[s.id][k]})});
+var QN=5;
+var MORE={en:[
+{t:["Choose the antonym of “Brave”.","“Brave” का विलोम शब्द चुनें।","“Brave”-এর বিপরীত শব্দ বেছে নিন।"],o:[["Bold","Cowardly","Strong","Fearless"]],a:1,e:["“Brave” means courageous. Its opposite is “Cowardly”.","“Brave” का अर्थ साहसी है। इसका विलोम “Cowardly” है।","“Brave” মানে সাহসী। এর বিপরীত “Cowardly”।"]},
+{t:["Choose the correct plural of “Child”.","“Child” का सही बहुवचन चुनें।","“Child”-এর সঠিক বহুবচন বেছে নিন।"],o:[["Childs","Children","Childrens","Childes"]],a:1,e:["The plural of “child” is irregular: children.","“Child” का बहुवचन अनियमित है: children।","“Child”-এর বহুবচন নিয়মবহির্ভূত: children।"]},
+{t:["Fill in the blank: They ___ playing football now.","रिक्त स्थान भरें: They ___ playing football now.","শূন্যস্থান পূরণ করুন: They ___ playing football now."],o:[["are","is","am","be"]],a:0,e:["“They” is plural and “now” shows present continuous, so we use “are”.","“They” बहुवचन है और “now” वर्तमान काल बताता है, इसलिए “are” आता है।","“They” বহুবচন এবং “now” বর্তমান কাল বোঝায়, তাই “are” বসে।"]}],
+ga:[
+{t:["Who was the first Prime Minister of India?","भारत के पहले प्रधानमंत्री कौन थे?","ভারতের প্রথম প্রধানমন্ত্রী কে ছিলেন?"],o:[["Mahatma Gandhi","Jawaharlal Nehru","Sardar Patel","Lal Bahadur Shastri"],["महात्मा गांधी","जवाहरलाल नेहरू","सरदार पटेल","लाल बहादुर शास्त्री"],["মহাত্মা গান্ধী","জওহরলাল নেহরু","সর্দার প্যাটেল","লাল বাহাদুর শাস্ত্রী"]],a:1,e:["Jawaharlal Nehru became India’s first Prime Minister in 1947.","जवाहरलाल नेहरू 1947 में भारत के पहले प्रधानमंत्री बने।","জওহরলাল নেহরু 1947 সালে ভারতের প্রথম প্রধানমন্ত্রী হন।"]},
+{t:["Which gas do plants take in for photosynthesis?","प्रकाश संश्लेषण के लिए पौधे कौन सी गैस लेते हैं?","সালোকসংশ্লেষের জন্য গাছ কোন গ্যাস নেয়?"],o:[["Oxygen","Carbon dioxide","Nitrogen","Hydrogen"],["ऑक्सीजन","कार्बन डाइऑक्साइड","नाइट्रोजन","हाइड्रोजन"],["অক্সিজেন","কার্বন ডাই-অক্সাইড","নাইট্রোজেন","হাইড্রোজেন"]],a:1,e:["Plants take in carbon dioxide and release oxygen.","पौधे कार्बन डाइऑक्साइड लेते हैं और ऑक्सीजन छोड़ते हैं।","গাছ কার্বন ডাই-অক্সাইড নেয় এবং অক্সিজেন ছাড়ে।"]},
+{t:["In which year did India gain independence?","भारत किस वर्ष स्वतंत्र हुआ?","ভারত কোন বছর স্বাধীন হয়?"],o:[["1942","1947","1950","1952"]],a:1,e:["India became independent on 15 August 1947.","भारत 15 अगस्त 1947 को स्वतंत्र हुआ।","ভারত 1947 সালের 15 আগস্ট স্বাধীন হয়।"]}]};
+S.forEach(function(s){(MORE[s.id]||[]).forEach(function(q){s.q.push(q)})});
+function rnd(n){return Math.floor(Math.random()*n)}
+function pick(a){return a[rnd(a.length)]}
+function shuf(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=rnd(i+1),x=a[i];a[i]=a[j];a[j]=x}return a}
+function mk(t,right,wrong,e){var o=shuf([String(right)].concat(wrong.map(String)));return {t:t,o:[o],a:o.indexOf(String(right)),e:e}}
+function nums(v,ds){var r=[];ds.forEach(function(d){var x=v+d;if(x>0&&x!==v&&r.indexOf(x)<0)r.push(x)});return r.slice(0,3)}
+function sh(w,n){return w.split("").map(function(c){return String.fromCharCode((c.charCodeAt(0)-65+n+52)%26+65)}).join("")}
+function inst(q){var p=shuf(q.o[0].map(function(_,i){return i}));return {t:q.t,e:q.e,a:p.indexOf(q.a),o:q.o.map(function(arr){return p.map(function(i){return arr[i]})})}}
+var NXT=function(a){return ["Find the next number: "+a.join(", ")+", ?","अगली संख्या ज्ञात करें: "+a.join(", ")+", ?","পরের সংখ্যা কত? "+a.join(", ")+", ?"]};
+var GEN={
+qa:[
+function(){var p=pick([10,15,20,25,30,40,50]),n=pick([80,120,150,200,240,300,400,500]),v=n*p/100;return mk(["What is "+p+"% of "+n+"?",n+" का "+p+"% कितना होता है?",n+"-এর "+p+"% কত?"],v,nums(v,[10,-10,5,-5,20,v]),[n+" × "+p+" ÷ 100 = "+v+"."])},
+function(){var c=pick([100,200,400,500]),p=pick([10,20,25,50]),s=c*(100+p)/100,w=[10,20,25,50,5,30].filter(function(x){return x!==p}).slice(0,3).map(function(x){return x+"%"}),g=s-c;return mk(["An item bought for ₹"+c+" is sold for ₹"+s+". What is the profit percent?","₹"+c+" में खरीदी वस्तु ₹"+s+" में बेची गई। लाभ प्रतिशत क्या है?","₹"+c+"-তে কেনা জিনিস ₹"+s+"-তে বিক্রি হল। লাভের শতকরা হার কত?"],p+"%",w,["Profit = "+s+" − "+c+" = "+g+". Profit % = "+g+" ÷ "+c+" × 100 = "+p+"%.","लाभ = "+s+" − "+c+" = "+g+"। लाभ % = "+g+" ÷ "+c+" × 100 = "+p+"%।","লাভ = "+s+" − "+c+" = "+g+"। লাভ % = "+g+" ÷ "+c+" × 100 = "+p+"%।"])},
+function(){var m=pick([20,25,30,40,50]),d=pick([5,10]),a=m-d,b=m+d;return mk(["What is the average of "+a+", "+m+" and "+b+"?",a+", "+m+" और "+b+" का औसत क्या है?",a+", "+m+" এবং "+b+"-এর গড় কত?"],m,nums(m,[5,-5,10,-10,15]),["("+a+" + "+m+" + "+b+") ÷ 3 = "+m+"."])},
+function(){var s=pick([40,50,60,80]),h=pick([2,3,4,5]),v=s*h;return mk(["A train runs at "+s+" km/h. How far does it go in "+h+" hours?","एक ट्रेन "+s+" किमी/घंटा की चाल से चलती है। "+h+" घंटे में वह कितनी दूरी तय करेगी?","একটি ট্রেন ঘণ্টায় "+s+" কিমি বেগে চলে। "+h+" ঘণ্টায় কত দূরত্ব যাবে?"],v,nums(v,[10,-10,20,-20,s]),["Distance = Speed × Time = "+s+" × "+h+" = "+v+".","दूरी = चाल × समय = "+s+" × "+h+" = "+v+"।","দূরত্ব = বেগ × সময় = "+s+" × "+h+" = "+v+"।"])},
+function(){var w=pick([[10,15,6],[12,24,8],[20,30,12],[6,12,4],[15,30,10]]),a=w[0],b=w[1],v=w[2];return mk(["A can do a job in "+a+" days and B in "+b+" days. Together, how many days?","A काम को "+a+" दिन में और B "+b+" दिन में करता है। साथ में कितने दिन लगेंगे?","A কাজটি "+a+" দিনে এবং B "+b+" দিনে করে। একসঙ্গে কত দিন লাগবে?"],v,nums(v,[1,-1,2,-2,3]),["Together = ("+a+" × "+b+") ÷ ("+a+" + "+b+") = "+v+" days.","साथ में = ("+a+" × "+b+") ÷ ("+a+" + "+b+") = "+v+" दिन।","একসঙ্গে = ("+a+" × "+b+") ÷ ("+a+" + "+b+") = "+v+" দিন।"])}],
+re:[
+function(){var s=pick([2,3,5,7,10]),d=pick([2,3,4,5,6,7]),a=[0,1,2,3].map(function(i){return s+i*d}),v=s+4*d;return mk(NXT(a),v,nums(v,[1,-1,d,-d,2]),["The difference is "+d+" each time: "+a[3]+" + "+d+" = "+v+".","हर बार अंतर "+d+" है: "+a[3]+" + "+d+" = "+v+"।","প্রতিবার পার্থক্য "+d+": "+a[3]+" + "+d+" = "+v+"।"])},
+function(){var s=pick([1,2,3]),r=pick([2,3]),a=[0,1,2,3].map(function(i){return s*Math.pow(r,i)}),v=s*Math.pow(r,4);return mk(NXT(a),v,nums(v,[r,-r,a[3],-1,1,s]),["Each number is "+r+" times the one before: "+a[3]+" × "+r+" = "+v+".","हर संख्या पिछली की "+r+" गुनी है: "+a[3]+" × "+r+" = "+v+"।","প্রতিটি সংখ্যা আগেরটির "+r+" গুণ: "+a[3]+" × "+r+" = "+v+"।"])},
+function(){var A="ABCDEFGHIJKLMNOPQRSTUVWXYZ",s=rnd(6),k=pick([2,3]),a=[0,1,2,3].map(function(i){return A.charAt(s+i*k)}),v=A.charAt(s+4*k),w=[1,-1,2].map(function(x){return A.charAt(s+4*k+x)});return mk(["Complete the series: "+a.join(", ")+", ?","श्रृंखला पूरी करें: "+a.join(", ")+", ?","ধারাটি পূরণ করুন: "+a.join(", ")+", ?"],v,w,["Each letter moves forward by "+k+" places, so the next letter is "+v+".","हर अक्षर "+k+" स्थान आगे बढ़ता है, इसलिए अगला अक्षर "+v+" है।","প্রতিটি অক্ষর "+k+" ধাপ এগোয়, তাই পরের অক্ষর "+v+"।"])},
+function(){var W=["CAT","DOG","SUN","PEN","BOX","MAP"],k=pick([1,2]),x=pick(W),y=pick(W.filter(function(z){return z!==x})),v=sh(y,k);return mk(["If "+x+" is written as "+sh(x,k)+", how is "+y+" written?","यदि "+x+" को "+sh(x,k)+" लिखा जाए, तो "+y+" को कैसे लिखेंगे?",x+"-কে "+sh(x,k)+" লিখলে "+y+" কীভাবে লেখা হবে?"],v,[sh(y,k+1),sh(y,-k),sh(y,k+2)],["Each letter moves "+k+" step(s) forward, so "+y+" becomes "+v+".","हर अक्षर "+k+" स्थान आगे बढ़ता है, इसलिए "+y+" = "+v+"।","প্রতিটি অক্ষর "+k+" ধাপ এগোয়, তাই "+y+" = "+v+"।"])}]};
+function qk(q){return q.t[0]+"|"+q.o[0][q.a]}
+function build(s){var last=st.lastT[s.id]||[];var out=GEN[s.id].slice(0,5).map(function(f,i){var q,n=0;do{q=f();n++}while(qk(q)===last[i]&&n<30);return q});st.lastT[s.id]=out.map(qk);return out}
+function PQ(bank,t3,e3){var x=pick(bank),o=shuf(bank.filter(function(z){return z!==x})).slice(0,3);return mk(t3(x),x[1],o.map(function(z){return z[1]}),e3(x))}
+var SYN=[["Rapid","Quick"],["Big","Large"],["Happy","Joyful"],["Begin","Start"],["Smart","Clever"],["Silent","Quiet"],["Buy","Purchase"],["Tiny","Small"],["Angry","Furious"],["Strange","Odd"],["Help","Assist"],["Brave","Courageous"]];
+var ANT=[["Ancient","Modern"],["Brave","Cowardly"],["Strong","Weak"],["Rich","Poor"],["Early","Late"],["Hard","Soft"],["Increase","Decrease"],["Accept","Reject"],["Victory","Defeat"],["Generous","Selfish"],["Expand","Shrink"],["Cheap","Expensive"]];
+var PLU=[["Child","Children"],["Man","Men"],["Woman","Women"],["Foot","Feet"],["Tooth","Teeth"],["Mouse","Mice"],["Person","People"],["Leaf","Leaves"],["Knife","Knives"],["Wolf","Wolves"]];
+var SPL=[["Receive","Recieve"],["Separate","Seperate"],["Necessary","Neccessary"],["Definitely","Definately"],["Occurred","Occured"],["Government","Goverment"],["Embarrass","Embarass"],["Calendar","Calender"]];
+var CAP=[["Maharashtra","Mumbai"],["Karnataka","Bengaluru"],["Tamil Nadu","Chennai"],["West Bengal","Kolkata"],["Gujarat","Gandhinagar"],["Rajasthan","Jaipur"],["Kerala","Thiruvananthapuram"],["Uttar Pradesh","Lucknow"],["Bihar","Patna"],["Odisha","Bhubaneswar"],["Assam","Dispur"],["Telangana","Hyderabad"],["Madhya Pradesh","Bhopal"]];
+var ELE=[["Gold","Au"],["Silver","Ag"],["Iron","Fe"],["Sodium","Na"],["Potassium","K"],["Copper","Cu"],["Lead","Pb"],["Oxygen","O"],["Carbon","C"],["Mercury","Hg"]];
+var BKS=[["Gitanjali","Rabindranath Tagore"],["Discovery of India","Jawaharlal Nehru"],["Wings of Fire","A. P. J. Abdul Kalam"],["Godan","Munshi Premchand"],["Anandamath","Bankim Chandra Chattopadhyay"],["Malgudi Days","R. K. Narayan"]];
+GEN.qa.push(
+function(){var P=pick([1000,2000,5000]),R=pick([5,10]),T=pick([2,3]),v=P*R*T/100;return mk(["What is the simple interest on ₹"+P+" at "+R+"% per year for "+T+" years?","₹"+P+" पर "+R+"% वार्षिक दर से "+T+" वर्ष का साधारण ब्याज कितना होगा?","₹"+P+"-এর উপর বার্ষিক "+R+"% হারে "+T+" বছরের সরল সুদ কত?"],v,nums(v,[50,-50,100,-100,200]),["SI = "+P+" × "+R+" × "+T+" ÷ 100 = "+v+"."])},
+function(){var M=pick([200,400,500,800]),d=pick([10,20,25]),x=M*d/100,v=M-x;return mk(["An item is marked at ₹"+M+". After a "+d+"% discount, what is the selling price?","एक वस्तु का अंकित मूल्य ₹"+M+" है। "+d+"% छूट के बाद विक्रय मूल्य क्या होगा?","একটি জিনিসের চিহ্নিত মূল্য ₹"+M+"। "+d+"% ছাড়ের পর বিক্রয়মূল্য কত?"],v,nums(v,[x,-x,20,-20,50]),["Discount = "+M+" × "+d+" ÷ 100 = "+x+". Selling price = "+M+" − "+x+" = "+v+".","छूट = "+M+" × "+d+" ÷ 100 = "+x+"। विक्रय मूल्य = "+M+" − "+x+" = "+v+"।","ছাড় = "+M+" × "+d+" ÷ 100 = "+x+"। বিক্রয়মূল্য = "+M+" − "+x+" = "+v+"।"])},
+function(){var n=pick([12,13,14,15,16,17,18,19,25]);return mk(["What is the square root of "+(n*n)+"?",(n*n)+" का वर्गमूल क्या है?",(n*n)+"-এর বর্গমূল কত?"],n,nums(n,[1,-1,2,-2,3]),[n+" × "+n+" = "+(n*n)+", so the square root is "+n+".",n+" × "+n+" = "+(n*n)+", इसलिए वर्गमूल "+n+" है।",n+" × "+n+" = "+(n*n)+", তাই বর্গমূল "+n+"।"])});
+GEN.re.push(
+function(){var s=pick([1,2,3,4,5,6]),a=[0,1,2,3].map(function(i){return (s+i)*(s+i)}),v=(s+4)*(s+4);return mk(NXT(a),v,nums(v,[1,-1,s,-s,3,5]),["These are square numbers: "+(s+4)+" × "+(s+4)+" = "+v+".","ये वर्ग संख्याएं हैं: "+(s+4)+" × "+(s+4)+" = "+v+"।","এগুলি বর্গসংখ্যা: "+(s+4)+" × "+(s+4)+" = "+v+"।"])},
+function(){var W=["CAB","BAD","ACE","FAD","BEG","DAB"],w=pick(W),v=w.split("").reduce(function(a,c){return a+c.charCodeAt(0)-64},0),p=w.split("").map(function(c){return c+"="+(c.charCodeAt(0)-64)}).join(", ");return mk(["If A=1, B=2, C=3 and so on, what is the value of "+w+"?","यदि A=1, B=2, C=3 आदि हैं, तो "+w+" का मान क्या होगा?","যদি A=1, B=2, C=3 ইত্যাদি হয়, তাহলে "+w+"-এর মান কত?"],v,nums(v,[1,-1,2,-2,3]),[p+". Total = "+v+".",p+"। कुल = "+v+"।",p+"। মোট = "+v+"।"])});
+GEN.en=[
+function(){return PQ(SYN,function(x){return ["Choose the synonym of “"+x[0]+"”.","“"+x[0]+"” का समानार्थी शब्द चुनें।","“"+x[0]+"”-এর সমার্থক শব্দ বেছে নিন।"]},function(x){return ["“"+x[0]+"” and “"+x[1]+"” have the same meaning.","“"+x[0]+"” और “"+x[1]+"” का अर्थ एक जैसा है।","“"+x[0]+"” ও “"+x[1]+"”-এর অর্থ একই।"]})},
+function(){return PQ(ANT,function(x){return ["Choose the antonym of “"+x[0]+"”.","“"+x[0]+"” का विलोम शब्द चुनें।","“"+x[0]+"”-এর বিপরীত শব্দ বেছে নিন।"]},function(x){return ["“"+x[0]+"” and “"+x[1]+"” have opposite meanings.","“"+x[0]+"” और “"+x[1]+"” के अर्थ विपरीत हैं।","“"+x[0]+"” ও “"+x[1]+"”-এর অর্থ বিপরীত।"]})},
+function(){var x=pick(PLU),a=x[1],w=[x[0]+"s",x[0]+"es",a+"s"].filter(function(z,i,r){return z!==a&&r.indexOf(z)===i});return mk(["Choose the correct plural of “"+x[0]+"”.","“"+x[0]+"” का सही बहुवचन चुनें।","“"+x[0]+"”-এর সঠিক বহুবচন বেছে নিন।"],a,w.slice(0,3),["The plural of “"+x[0]+"” is irregular: "+a+".","“"+x[0]+"” का बहुवचन अनियमित है: "+a+"।","“"+x[0]+"”-এর বহুবচন নিয়মবহির্ভূত: "+a+"।"])},
+function(){var x=pick(SPL),r=x[0],sw=function(i){return r.slice(0,i)+r.charAt(i+1)+r.charAt(i)+r.slice(i+2)},dr=function(i){return r.slice(0,i)+r.slice(i+1)},w=[x[1],sw(2),sw(4),dr(3),dr(5)].filter(function(z,i,a){return z!==r&&a.indexOf(z)===i}).slice(0,3);return mk(["Choose the correctly spelled word.","सही वर्तनी वाला शब्द चुनें।","সঠিক বানান বেছে নিন।"],r,w,["The correct spelling is “"+r+"”.","सही वर्तनी “"+r+"” है।","সঠিক বানান “"+r+"”।"])}];
+GEN.ga=[
+function(){return PQ(CAP,function(x){return ["What is the capital of "+x[0]+"?",x[0]+" की राजधानी क्या है?",x[0]+"-এর রাজধানী কী?"]},function(x){return ["The capital of "+x[0]+" is "+x[1]+".",x[0]+" की राजधानी "+x[1]+" है।",x[0]+"-এর রাজধানী "+x[1]+"।"]})},
+function(){return PQ(ELE,function(x){return ["What is the chemical symbol of "+x[0]+"?",x[0]+" का रासायनिक प्रतीक क्या है?",x[0]+"-এর রাসায়নিক প্রতীক কী?"]},function(x){return ["The chemical symbol of "+x[0]+" is "+x[1]+".",x[0]+" का रासायनिक प्रतीक "+x[1]+" है।",x[0]+"-এর রাসায়নিক প্রতীক "+x[1]+"।"]})},
+function(){return PQ(BKS,function(x){return ["Who wrote “"+x[0]+"”?","“"+x[0]+"” किसने लिखा?","“"+x[0]+"” কে লিখেছেন?"]},function(x){return ["“"+x[0]+"” was written by "+x[1]+".","“"+x[0]+"” के लेखक "+x[1]+" हैं।","“"+x[0]+"”-এর লেখক "+x[1]+"।"]})}];
+var ART=[["apple","an"],["umbrella","an"],["hour","an"],["honest man","an"],["orange","an"],["eagle","an"],["book","a"],["university","a"],["hotel","a"],["European tour","a"],["pen","a"],["unicorn","a"]];
+var NAT=[["animal","Tiger","पशु","পশু"],["bird","Peacock","पक्षी","পাখি"],["flower","Lotus","फूल","ফুল"],["fruit","Mango","फल","ফল"],["tree","Banyan","वृक्ष","গাছ"],["river","Ganga","नदी","নদী"]];
+var CUR=[["Japan","Yen"],["USA","Dollar"],["UK","Pound"],["Russia","Ruble"],["China","Yuan"],["Switzerland","Franc"],["Saudi Arabia","Riyal"],["Bangladesh","Taka"]];
+GEN.en.push(function(){var x=pick(ART),a=x[1],v=a==="an";return mk(["Fill in the blank: She saw ___ "+x[0]+".","रिक्त स्थान भरें: She saw ___ "+x[0]+".","শূন্যস্থান পূরণ করুন: She saw ___ "+x[0]+"."],a,["a","an","the","—"].filter(function(z){return z!==a}),v?["“"+x[0]+"” starts with a vowel sound, so we use “an”.","“"+x[0]+"” की ध्वनि स्वर से शुरू होती है, इसलिए “an” आता है।","“"+x[0]+"”-এর উচ্চারণ স্বরধ্বনি দিয়ে শুরু, তাই “an” বসে।"]:["“"+x[0]+"” starts with a consonant sound, so we use “a”.","“"+x[0]+"” की ध्वनि व्यंजन से शुरू होती है, इसलिए “a” आता है।","“"+x[0]+"”-এর উচ্চারণ ব্যঞ্জনধ্বনি দিয়ে শুরু, তাই “a” বসে।"])});
+GEN.ga.push(
+function(){return PQ(NAT,function(x){return ["Which is the national "+x[0]+" of India?","भारत का राष्ट्रीय "+x[2]+" कौन सा है?","ভারতের জাতীয় "+x[3]+" কোনটি?"]},function(x){return ["The national "+x[0]+" of India is the "+x[1]+".","भारत का राष्ट्रीय "+x[2]+" "+x[1]+" है।","ভারতের জাতীয় "+x[3]+" "+x[1]+"।"]})},
+function(){return PQ(CUR,function(x){return ["What is the currency of "+x[0]+"?",x[0]+" की मुद्रा क्या है?",x[0]+"-এর মুদ্রা কী?"]},function(x){return ["The currency of "+x[0]+" is the "+x[1]+".",x[0]+" की मुद्रा "+x[1]+" है।",x[0]+"-এর মুদ্রা "+x[1]+"।"]})});
+function esc(x){return String(x).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
+function hp(s){var h=5381;for(var i=0;i<s.length;i++)h=((h<<5)+h+s.charCodeAt(i))|0;return String(h)}
+function ld(){try{return JSON.parse(localStorage.getItem("tq_acc")||"{}")}catch(e){return {}}}
+function sd(u){try{localStorage.setItem("tq_acc",JSON.stringify(u))}catch(e){}}
+var SB="https://icckkjfgtqvlpviyepuz.supabase.co",KEY="sb_publishable_tbmQ9_ZnULz-vxIMyF1A_w_ZUv0lc8T",EMR=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+function gv(id){var e=document.getElementById(id);return e?e.value:""}
+async function sb(path,o){o=o||{};var h={"apikey":KEY,"Content-Type":"application/json"};if(o.tok)h["Authorization"]="Bearer "+o.tok;if(o.prefer)h["Prefer"]=o.prefer;var r;try{r=await fetch(SB+path,{method:o.m||"GET",headers:h,body:o.b?JSON.stringify(o.b):undefined})}catch(e){return {net:true}}var j=null;try{j=await r.json()}catch(e){}return {ok:r.ok,s:r.status,j:j}}
+function saveSess(j){var u=j.user||{},p=st.sess||{};st.sess={at:j.access_token,rt:j.refresh_token||p.rt,exp:Date.now()+(j.expires_in||3600)*1000-60000,uid:u.id||p.uid,email:String(u.email||p.email||"").toLowerCase()};try{localStorage.setItem("tq_sess",JSON.stringify(st.sess))}catch(e){}}
+async function tok(){var s=st.sess;if(!s)return null;if(Date.now()<s.exp)return s.at;var r=await sb("/auth/v1/token?grant_type=refresh_token",{m:"POST",b:{refresh_token:s.rt}});if(r.ok&&r.j&&r.j.access_token){saveSess(r.j);return st.sess.at}if(!r.net&&(r.s===400||r.s===401||r.s===403)){endSess();st.scr="login";draw()}return s.at}
+function lock(){if(document.querySelector){var b=document.querySelector("button.cta");if(b){b.disabled=true;b.style.opacity=".6";b.textContent=t("wait")}}}
+function fe(k){st.err=t(k);st.info="";draw()}
+function goLogin(){st.err="";st.scr="login";draw()}
+function openSignup(m){st.fl={mode:m,g:""};st.err="";st.info="";st.scr="email";draw()}
+function otpErr(r){if(r.s===429)return "erate";var m=JSON.stringify(r.j||{});if(st.fl.mode==="reset"&&/not allowed|user_not_found|otp_disabled/i.test(m))return "eno";return "esend"}
+async function sendOtp(){var em=gv("em").trim().toLowerCase();st.fl.email=em;if(!EMR.test(em))return fe("eem");lock();var r=await sb("/auth/v1/otp",{m:"POST",b:{email:em,create_user:st.fl.mode==="signup"}});if(r.net)return fe("enet");if(!r.ok)return fe(otpErr(r));st.err="";st.info="";st.scr="otp";draw()}
+async function resend(){var r=await sb("/auth/v1/otp",{m:"POST",b:{email:st.fl.email,create_user:st.fl.mode==="signup"}});if(r.net)return fe("enet");if(!r.ok)return fe(otpErr(r));st.err="";st.info=t("sent2");draw()}
+async function verifyOtp(){var c=gv("ot").replace(/\s/g,"");if(c.length<6)return fe("eot");lock();var r=await sb("/auth/v1/verify",{m:"POST",b:{type:"email",email:st.fl.email,token:c}});if(r.net)return fe("enet");if(!r.ok||!r.j||!r.j.access_token)return fe(r.s===429?"erate":"eot");saveSess(r.j);st.err="";st.info="";st.scr="setpw";draw()}
+async function loadProfile(){var tk=await tok(),r=await sb("/rest/v1/profiles?id=eq."+st.sess.uid+"&select=name,dob,gender",{tok:tk});if(r.net||!r.ok)return null;return r.j&&r.j[0]?r.j[0]:false}
+async function savePw(){var a=gv("p1"),b=gv("p2");if(a.length<6)return fe("epw");if(a!==b)return fe("epm");lock();var tk=await tok(),r=await sb("/auth/v1/user",{m:"PUT",tok:tk,b:{password:a}});if(r.net)return fe("enet");if(!r.ok){var m=JSON.stringify(r.j||{});if(!/different from the old/i.test(m))return fe(/weak|short|characters/i.test(m)?"epw":"esend")}var p=await loadProfile();if(p===null)return fe("enet");if(p===false){st.err="";st.scr="profile";draw()}else await afterLogin()}
+function capture(){st.fl.fn=gv("fn");st.fl.dob=gv("dob")}
+function setGen(g){capture();st.fl.g=g;draw()}
+async function saveProfile(){capture();var nm=(st.fl.fn||"").trim(),db=st.fl.dob,d=new Date(db);if(nm.length<2)return fe("enm");if(!db||isNaN(d)||d>new Date()||d.getFullYear()<1940)return fe("edb");if(!st.fl.g)return fe("egn");lock();var tk=await tok(),r=await sb("/rest/v1/profiles",{m:"POST",tok:tk,prefer:"resolution=merge-duplicates,return=minimal",b:{id:st.sess.uid,name:nm,dob:db,gender:st.fl.g}});if(r.net)return fe("enet");if(!r.ok)return fe("esend");await afterLogin()}
+async function doLogin(){var em=gv("em").trim().toLowerCase(),pw=gv("pw");st.em=em;if(!EMR.test(em)||!pw)return fe("ecr");lock();var r=await sb("/auth/v1/token?grant_type=password",{m:"POST",b:{email:em,password:pw}});if(r.net)return fe("enet");if(!r.ok||!r.j||!r.j.access_token)return fe(r.s===429?"erate":"ecr");saveSess(r.j);var p=await loadProfile();if(p===false){st.fl={mode:"signup",email:em,g:""};st.err="";st.scr="profile";return draw()}await afterLogin()}
+async function afterLogin(){var em=st.sess.email;st.user=em;st.guest=false;var d=ld();if(!d[em])d[em]={email:em,name:"",att:[],notes:[]};sd(d);await syncDown();st.fl={};st.err="";showWelcome()}
+function togglePw(){var e=document.getElementById("pw");if(!e)return;var on=e.type==="password";e.type=on?"text":"password";var b=document.getElementById("pwt");if(b){b.setAttribute("aria-label",t(on?"hdp":"shw"));b.setAttribute("aria-pressed",on?"true":"false");b.classList.toggle("on",on)}}
+function showWelcome(){clearTimeout(st.wt);st.enter=Date.now()+1300;var rm=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;if(rm){st.scr="home";draw();return}st.scr="welcome";draw();st.wt=setTimeout(endWelcome,1900)}
+function endWelcome(){clearTimeout(st.wt);if(st.scr!=="welcome")return;st.enter=Date.now()+1300;st.scr="home";draw()}
+async function syncDown(){var em=st.user,tk=await tok(),d=ld(),u=d[em]||(d[em]={email:em,att:[],notes:[]});
+ var p=await sb("/rest/v1/profiles?id=eq."+st.sess.uid+"&select=name,dob,gender",{tok:tk});if(p.ok&&p.j&&p.j[0]){u.name=p.j[0].name;u.dob=p.j[0].dob;u.gender=p.j[0].gender}
+ var a1=await sb("/rest/v1/attempts?select=subject,title,score,total,created_at,details&order=created_at.desc&limit=20",{tok:tk}),a2=await sb("/rest/v1/attempts?select=subject,title,score,total,created_at&order=created_at.desc&offset=20&limit=500",{tok:tk});
+ if(a1.ok&&a2.ok){u.att=(a1.j||[]).concat(a2.j||[]).reverse().map(function(x){var o={d:Date.parse(x.created_at),s:x.subject,p:x.score,n:x.total,ti:x.title||""};if(x.details&&x.details.q){o.q=x.details.q;o.r=x.details.r;if(x.details.mk!=null){o.mk=x.details.mk;o.tt=x.details.tt}}return o})}
+ var n=await sb("/rest/v1/notes?select=id,title,body&order=created_at.asc",{tok:tk});if(n.ok)u.notes=(n.j||[]).map(function(x){return {id:x.id,title:x.title,text:x.body}});
+ sd(d)}
+async function pushAttempt(x){var tk=await tok();await sb("/rest/v1/attempts",{m:"POST",tok:tk,prefer:"return=minimal",b:{subject:x.s,title:x.ti||"",score:x.p,total:x.n,details:{q:x.q,r:x.r,mk:x.mk,tt:x.tt}}})}
+function endSess(){var em=st.user;st.sess=null;try{localStorage.removeItem("tq_sess")}catch(e){}try{sessionStorage.removeItem("tq_nav")}catch(e){}if(em){var d=ld();delete d[em];sd(d)}st.user=null}
+function guest(){st.guest=true;st.scr="home";draw()}
+function logout(){endSess();st.guest=false;st.scr="login";draw()}
+function acct(){if(st.user){st.scr="prog"}else{st.scr="login"}draw()}
+function saveAttempt(){if(!st.user)return;var d=ld(),u=d[st.user]||(d[st.user]={email:st.user,att:[],notes:[]});var sc2=score(st.qs,st.ans);var ent={d:Date.now(),s:st.s.id,p:sc2.c,n:st.qs.length,ti:(st.nq||st.tp||st.mk||st.mt||st.bk)&&st.s.title?st.s.title:"",q:st.qs.map(function(q){return {t:q.t,o:q.o,a:q.a,e:q.e,ai:q.ai?1:0}}),r:st.ans.slice()};if(st.mt){ent.mk=sc2.m;ent.tt=st.tt||0}u.att.push(ent);u.att.forEach(function(x,i){if(i<u.att.length-20){delete x.q;delete x.r}});sd(d);pushAttempt(ent).catch(function(){})}
+function toks(sn){return sn.split(/\s+/).map(function(w){return w.replace(/^[^\p{L}\p{N}]+|[^\p{L}\p{N}]+$/gu,"")}).filter(Boolean)}
+function uniq(a){return a.filter(function(x,i){return a.indexOf(x)===i})}
+function sentsOf(txt){return txt.replace(/([.!?।])\s+/g,"$1\n").split(/\n+/).map(function(x){return x.trim()}).filter(function(x){return x.length>=25&&x.length<=220&&toks(x).length>=5})}
+function reEsc(x){return x.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")}
+function genNotes(s){
+ var sents=sentsOf(s.txt);if(sents.length<4)return null;
+ var all=toks(s.txt),isN=function(w){return /^\d+(\.\d+)?$/.test(w)},isC=function(w){return /^\p{Lu}/u.test(w)&&w.length>2};
+ var P={n:uniq(all.filter(isN)),c:uniq(all.filter(isC)),l:uniq(all.filter(function(w){return w.length>=5&&!isN(w)}))},cands=[];
+ sents.forEach(function(sn,i){var tk=toks(sn),a=null,kd;var n=tk.filter(isN)[0];
+  if(n){a=n;kd="n"}else{var c=tk.filter(function(w,j){return j>0&&isC(w)})[0];if(c){a=c;kd="c"}else{var lw=tk.filter(function(w){return w.length>=5}).sort(function(x,y){return y.length-x.length})[0];if(lw){a=lw;kd="l"}}}
+  if(!a)return;var low=a.toLowerCase(),d=P[kd].filter(function(w){return w.toLowerCase()!==low});
+  if(kd==="n"){var v=parseInt(a,10);[1,-1,2,-2,10,-10,5].forEach(function(o){var z=String(v+o);if(v+o>0&&d.indexOf(z)<0&&z!==a)d.push(z)})}
+  else if(d.length<3)d=d.concat(P.l.filter(function(w){return w.toLowerCase()!==low&&d.indexOf(w)<0}));
+  d=shuf(uniq(d)).slice(0,3);if(d.length<3)return;
+  cands.push({i:i,sn:sn,a:a,d:d})});
+ if(cands.length<3)return null;
+ var used=st.nu[s.nid]||[],fresh=cands.filter(function(c){return used.indexOf(c.i)<0});if(fresh.length<Math.min(5,cands.length)){used=[];fresh=cands}
+ var pick5=shuf(fresh).slice(0,5);st.nu[s.nid]=used.concat(pick5.map(function(c){return c.i}));
+ var lab='<small class="mute">'+esc(s.title)+'</small><br>';
+ return pick5.map(function(c){var bl=esc(c.sn.replace(new RegExp("(^|[^\\p{L}\\p{N}])"+reEsc(c.a)+"(?![\\p{L}\\p{N}])","u"),"$1_____")),src=esc(c.sn);
+  return mk([lab+"Fill in the blank: "+bl,lab+"रिक्त स्थान भरें: "+bl,lab+"শূন্যস্থান পূরণ করুন: "+bl],esc(c.a),c.d.map(esc),["From your notes: “"+src+"”","आपके नोट्स से: “"+src+"”","আপনার নোট থেকে: “"+src+"”"])})}
+function getNotes(){if(st.user){var u=ld()[st.user];return (u&&u.notes)||[]}return st.gn}
+function putNotes(a){if(st.user){var d=ld(),u=d[st.user]||(d[st.user]={email:st.user,att:[],notes:[]});u.notes=a;sd(d)}else st.gn=a}
+function goMN(){setMode("");st.err="";st.scr="mn";draw()}
+async function saveNote(){var ti=gv("nt").trim()||"Notes",tx=gv("nx").trim();st.nd={t:ti,x:tx};if(sentsOf(tx).length<4)return fe("short");var a=getNotes();if(a.length>=10)return fe("max");var n={id:String(Date.now()),title:ti.slice(0,60),text:tx.slice(0,20000)};if(st.user){lock();var tk=await tok(),r=await sb("/rest/v1/notes",{m:"POST",tok:tk,prefer:"return=representation",b:{title:n.title,body:n.text}});if(r.net)return fe("enet");if(!r.ok||!r.j||!r.j[0])return fe("esend");n.id=r.j[0].id}a.push(n);putNotes(a);st.nd={t:"",x:""};st.err="";draw()}
+function delNote(id){putNotes(getNotes().filter(function(n){return n.id!==id}));delete st.nu[id];if(st.user)tok().then(function(tk){return sb("/rest/v1/notes?id=eq."+id,{m:"DELETE",tok:tk})}).catch(function(){});draw()}
+function startNote(id){st.ai=false;setMode("nq");var n=getNotes().filter(function(z){return z.id===id})[0];if(!n)return;var et=esc(n.title);st.nq=true;st.s={id:"mynote",nid:id,txt:n.text,title:n.title,n:[et,et,et]};startQuiz()}
+async function aiRun(b,et,back){
+ st.ldq=0;st.err="";st.scr="load";draw();
+ var tk=await tok(),r=await sb("/functions/v1/make-questions",{m:"POST",tok:tk,b:b});
+ if(st.scr!=="load")return;
+ var bad=function(k){st.scr=back;fe(k)};
+ if(r.net)return bad("enet");if(r.s===429)return bad("ailim");if(r.s===503)return bad("aibusy");if(!r.ok||!r.j||!r.j.questions)return bad("aifail");
+ var lab='<small class="mute">'+et+' · AI</small><br>',qs=[];
+ r.j.questions.slice(0,5).forEach(function(x){if(!x||typeof x.question!=="string"||!Array.isArray(x.options)||x.options.length!==4||!(x.correct_index>=0&&x.correct_index<4))return;
+  var o=x.options.map(String),c=o[x.correct_index],sh=shuf(o),ex=esc(String(x.explanation||"")),q=lab+esc(x.question);
+  qs.push({ai:1,t:[q,q,q],o:[sh.map(esc)],a:sh.indexOf(c),e:[(b.mode==="topic"?"":"From your notes: ")+ex,(b.mode==="topic"?"":"आपके नोट्स से: ")+ex,(b.mode==="topic"?"":"আপনার নোট থেকে: ")+ex]})});
+ if(qs.length<3)return bad("aifail");
+ st.qs=qs;st.ai=true;st.i=0;st.ans=[];st.ow=false;st.scr="quiz";draw()}
+async function startNoteAI(id){var n=getNotes().filter(function(z){return z.id===id})[0];if(!n)return;if(!st.user)return fe("ailog");
+ var et=esc(n.title);setMode("nq");st.ai=false;st.s={id:"mynote",nid:id,txt:n.text,title:n.title,n:[et,et,et]};
+ return aiRun({title:n.title,text:n.text.slice(0,12000)},et,"mn")}
+function goTP(){setMode("");st.err="";st.scr="tp";draw()}
+async function startTopicAI(){var tp=(gv("tpx")||st.tx||"").trim();if(!st.user)return fe("ailog");if(tp.length<3)return fe("tpe");
+ st.tx=tp;var et=esc(tp);setMode("tp");st.ai=false;st.s={id:"aitopic",title:tp,n:[et,et,et]};
+ return aiRun({mode:"topic",lang:LN[L()],title:tp,text:tp},et,"tp")}
+function loadScript(u){return new Promise(function(ok,no){var s=document.createElement("script");s.src=u;s.onload=ok;s.onerror=no;document.head.appendChild(s)})}
+async function pdfText(f){var V="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/";if(!window.pdfjsLib)await loadScript(V+"pdf.min.js");window.pdfjsLib.GlobalWorkerOptions.workerSrc=V+"pdf.worker.min.js";
+ var doc=await window.pdfjsLib.getDocument({data:await f.arrayBuffer()}).promise,out="";
+ for(var i=1;i<=Math.min(doc.numPages,40);i++){var pg=await doc.getPage(i),c=await pg.getTextContent();out+=c.items.map(function(x){return x.str+(x.hasEOL?"\n":" ")}).join("")+"\n";if(out.length>20000)break}return out}
+function readFile(inp){var f=inp.files&&inp.files[0];if(!f)return;var pdf=/\.pdf$/i.test(f.name)||f.type==="application/pdf";if(f.size>(pdf?5000000:200000))return fe("big");
+ var fill=function(txt){var m=document.getElementById("pdfmsg");if(m)m.textContent="";txt=String(txt).replace(/[ \t]+/g," ").replace(/\n\s*\n+/g,"\n").trim();if(txt.length<80)return fe("nopdf");document.getElementById("nx").value=txt.slice(0,20000);var nt=document.getElementById("nt");if(!nt.value)nt.value=f.name.replace(/\.[^.]+$/,"")};
+ if(pdf){var m=document.getElementById("pdfmsg");if(m)m.textContent=t("pdfw");pdfText(f).then(fill).catch(function(){fe("nopdf")});return}
+ var r=new FileReader();r.onload=function(){fill(r.result)};r.readAsText(f)}
+function goDel(){st.err="";st.scr="del";draw()}
+async function doDelete(){lock();var tk=await tok(),r=await sb("/functions/v1/delete-account",{m:"POST",tok:tk,b:{}});if(r.net)return fe("enet");if(!r.ok)return fe("dle");endSess();st.guest=false;st.err="";st.scr="login";st.info=t("dld");draw()}
+async function reportQ(btn,k){var q=(st.rq||st.qs)[k];if(!q||!st.user)return;btn.disabled=true;var tk=await tok(),r=await sb("/rest/v1/reports",{m:"POST",tok:tk,prefer:"return=minimal",b:{question:String(q.t[0]).replace(/<[^>]*>/g,"").slice(0,1000),options:q.o[0].join(" | ").slice(0,1000)}});btn.textContent=r.ok?t("rpd"):t("esend")}
+function openAtt(i){st.view=i;st.ow=false;st.scr="att";draw()}
+function revList(qs,ans,l){st.rq=qs;var h='<button class="chip" style="margin-top:12px" onclick="st.ow=!st.ow;draw()">'+(st.ow?t("wa"):t("wo"))+'</button>',c=0;
+ qs.forEach(function(q,k){var oo=q.o[l]||q.o[0],ok=ans[k]===q.a;if(st.ow&&ok)return;c++;
+  h+='<div class="rv '+(ok?'good':'miss')+'"><p class="mute">'+t("q")+' '+(k+1)+'</p><p class="q2">'+q.t[l]+'</p><p>'+t("yours")+': <b>'+(ans[k]==null?t("skp"):oo[ans[k]])+'</b></p>'+(ok?'':'<p>'+t("right")+': <b>'+oo[q.a]+'</b></p>')+'<p class="why">'+t("why")+': '+(q.e[l]||q.e[0])+'</p>'+(q.ai?'<button class="link" onclick="reportQ(this,'+k+')">'+t("rpt")+'</button>':'')+'</div>'});
+ if(!c)h+='<p class="mute" style="margin-top:12px">'+t("nw")+'</p>';return h}
+var LOGO='<svg width="38" height="38" viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="10" fill="var(--blue)"/><circle cx="20" cy="20" r="9" fill="none" stroke="#fff" stroke-width="3"/><path d="M15.5 20.5l3.2 3.2 6-6.5" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+var st={lang:null,scr:"lang",ps:"",enter:0,wt:0,mk:false,mt:false,bk:false,tmr:null,ldq:0,lastB:{},timeup:0,cf:0,cfn:null,hd:0,skipUntil:0,tp:false,tx:"",ai:false,sess:null,info:"",nq:false,nd:{t:"",x:""},gn:[],nu:{},lastT:{},view:0,ow:false,fl:{},em:"",qs:[],last:{},user:null,guest:false,err:"",nm:"",back:null,ex:null,s:null,i:0,pick:null,score:0},app=document.getElementById("app");
+try{var sv=localStorage.getItem("lang"),ss=JSON.parse(localStorage.getItem("tq_sess")||"null");if(ss&&ss.email&&ss.rt){st.sess=ss;st.user=ss.email}if(LN.indexOf(sv)>-1){st.lang=sv;st.scr=st.user?"home":"login"}}catch(e){}
+function L(){var n=LN.indexOf(st.lang);return n<0?0:n}
+function t(k){return T[LN[L()]][k]}
+function setLang(l){st.lang=l;try{localStorage.setItem("lang",l)}catch(e){}st.scr=st.back||((st.user||st.guest)?"home":"login");st.back=null;draw()}
+function chooseLang(){st.back=st.scr;st.scr="lang";draw()}
+function goHome(){setMode("");st.scr="home";draw()}
+function goExam(){setMode("");st.scr="exam";draw();if(st.ex&&st.ex!=="ssc"&&st.bc==null)loadBankCounts()}
+function openEx(id){setMode("");st.ex=id;st.err="";st.scr="exam";draw();if(id!=="ssc")loadBankCounts()}
+function openSubj(id){setMode("");st.ai=false;st.s=S.filter(function(x){return x.id===id})[0];st.scr="subj";draw()}
+function goSubj(){st.scr="subj";draw()}
+function showNotes(){st.scr="notes";draw()}
+function startQuiz(){st.ow=false;st.qs=st.nq?genNotes(st.s):build(st.s);if(!st.qs)return goMN();st.i=0;st.ans=[];st.scr="quiz";draw()}
+function pickOpt(k){st.ans[st.i]=k;draw()}
+function next(){if(st.i<st.qs.length-1)st.i++;else{if(st.mt){clearInterval(st.tmr);st.tt=Math.min(st.lim,Math.round((Date.now()-st.t0)/1000))}st.scr="res";saveAttempt()}draw()}
+var ACC={ssc:"#3F6BFF",jee:"#8B6CF5",brd:"#14B8A6",stj:"#F59E0B",qa:"#3F6BFF",re:"#8B6CF5",en:"#14B8A6",ga:"#F59E0B",phy:"#8B6CF5",che:"#14B8A6",bio:"#22C55E",mth:"#F59E0B",sci:"#14B8A6",mat:"#F59E0B",gk:"#F59E0B",mk:"#EF6C4D",mt:"#EF6C4D"},LOC=["en-IN","hi-IN","bn-IN"];
+function tint(h,a){var n=parseInt(h.slice(1),16);return "rgba("+(n>>16)+","+(n>>8&255)+","+(n&255)+","+(a||.14)+")"}
+function acs(c){return c?' style="--a:'+c+';--abg:'+tint(c)+'"':''}
+function dk(d){d=new Date(d);return d.getFullYear()+"-"+d.getMonth()+"-"+d.getDate()}
+function streakInfo(){var u=st.user&&ld()[st.user],days={},n=new Date(),out=[],i,s=0;if(u)u.att.forEach(function(x){days[dk(x.d)]=1});
+ for(i=6;i>=0;i--){var d=new Date(n.getFullYear(),n.getMonth(),n.getDate()-i);out.push({on:!!days[dk(d)],today:i===0,w:d.toLocaleDateString(LOC[L()],{weekday:"narrow"})})}
+ for(i=days[dk(n)]?0:1;i<400;i++){if(days[dk(new Date(n.getFullYear(),n.getMonth(),n.getDate()-i))])s++;else break}
+ return {w:out,s:s}}
+function ring(p,n){var r=52,c=2*Math.PI*r,f=n?p/n:0,col=f>=.8?"var(--ok)":f>=.5?"var(--btn)":"var(--warn)";
+ return '<div class="ring"><svg viewBox="0 0 120 120" width="148" height="148" role="img" aria-label="'+p+' / '+n+'"><circle cx="60" cy="60" r="'+r+'" fill="none" stroke="var(--line)" stroke-width="12"/><circle cx="60" cy="60" r="'+r+'" fill="none" stroke="'+col+'" stroke-width="12" stroke-linecap="round" stroke-dasharray="'+(c*f).toFixed(1)+' '+c.toFixed(1)+'" transform="rotate(-90 60 60)"/></svg><div class="rn"><b>'+p+'</b><span>/ '+n+'</span></div></div>'}
+function hdr(left){var u=st.user&&ld()[st.user],nm=(u&&u.name)||String(st.user||"").split("@")[0];
+ return '<div class="top">'+left+'<span class="grp">'+(st.user?'<button class="av" onclick="guard(\'acct\')" aria-label="'+t("pg")+'">'+esc((nm||"?").charAt(0).toUpperCase())+'</button>':'<button class="chip" onclick="guard(\'acct\')">Login</button>')+'<button class="chip" onclick="chooseLang()" aria-label="Language">A / अ / অ</button></span></div>'}
+var TIPS=[["Tip: read every option before you answer.","Tip: skip a hard question and come back to it.","Tip: practise a little every day to build your streak.","Tip: check the explanation after every wrong answer.","Tip: your wrong answers are saved in the {nb}.","Tip: take a timed mock test to practise for the real exam."],
+["सुझाव: जवाब देने से पहले सभी विकल्प पढ़ें।","सुझाव: कठिन प्रश्न छोड़ें और बाद में लौटें।","सुझाव: स्ट्रीक बनाने के लिए रोज़ थोड़ा अभ्यास करें।","सुझाव: हर गलत उत्तर के बाद स्पष्टीकरण पढ़ें।","सुझाव: आपके गलत उत्तर \"{nb}\" में सेव होते हैं।","सुझाव: असली परीक्षा की तैयारी के लिए मॉक टेस्ट दें।"],
+["টিপ: উত্তর দেওয়ার আগে সব অপশন পড়ুন।","টিপ: কঠিন প্রশ্ন বাদ দিয়ে পরে ফিরে আসুন।","টিপ: স্ট্রিক বানাতে রোজ একটু অনুশীলন করুন।","টিপ: প্রতিটি ভুল উত্তরের পর ব্যাখ্যা পড়ুন।","টিপ: আপনার ভুল উত্তর \"{nb}\"-তে সেভ হয়।","টিপ: আসল পরীক্ষার জন্য মক টেস্ট দিন।"]];
+function tipText(i){return TIPS[L()][i%6].replace("{nb}",t("mkt"))}
+function tipTick(){var e=document.getElementById("ldt");if(!e||st.scr!=="load"){clearInterval(st.ldi);return}st.ti=((st.ti||0)+1)%6;e.textContent=tipText(st.ti)}
+function cancelLoad(){clearInterval(st.ldi);var f=parentOf();st.ldq=0;if(f&&NAVF[f])NAVF[f]();else goHome()}
+async function loadBankCounts(){st.bc=null;var tk=st.sess?await tok():null,r=await sb("/rest/v1/questions?select=subject&active=eq.true&limit=5000",{tok:tk}),m={};
+ if(r.ok&&Array.isArray(r.j))r.j.forEach(function(x){if(x&&x.subject)m[x.subject]=(m[x.subject]||0)+1});st.bc=m;if(st.scr==="exam")draw()}
+function bankSoon(){st.err=t("bksoon");draw()}
+function card(fn,ic,name,meta,ac,soon){return '<button class="sub'+(soon?' soon':'')+'"'+acs(ac)+' onclick="'+fn+'"><span class="ico">'+ic+'</span><span><b>'+name+'</b><span class="mute">'+meta+'</span></span></button>'}
+function tile(fn,ic,name,meta,ac,soon){return '<button class="tile'+(soon?' soon':'')+'"'+acs(ac)+' onclick="'+fn+'"><span class="ico">'+ic+'</span><span><b>'+name+'</b><small>'+meta+'</small></span></button>'}
+function bk(fn,label){return '<button class="link" onclick="'+fn+'()">← '+label+'</button>'}
+function dOf(sc){var n=!!extra();if(sc==="lang")return st.back?dOf(st.back)+1:0;return ({home:0,login:0,exam:1,mn:1,tp:1,prog:1,mk:1,mt:2,email:1,att:2,del:2,otp:2,subj:2,notes:n?2:3,quiz:n?2:3,res:n?2:3,load:2,setpw:3,profile:3})[sc]||0}
+function depthOf(){return dOf(st.scr)}
+function parentOf(){var s=st.scr,n=extra();
+ switch(s){case"exam":case"mn":case"tp":case"prog":case"mk":return"goHome";case"mt":return"goExam";case"subj":return"goExam";case"notes":case"quiz":return n||"goSubj";case"res":return n||"goExam";case"att":case"del":return"acct";case"load":return st.bk?"goExam":st.nq?"goMN":"goTP";case"email":case"otp":case"setpw":case"profile":return"goLogin";case"lang":return st.back?"backLang":null}return null}
+function backLang(){st.scr=st.back||((st.user||st.guest)?"home":"login");st.back=null;draw()}
+var NAVF={goHome:goHome,goExam:goExam,goSubj:goSubj,goMN:goMN,goTP:goTP,goMK:goMK,goMT:goMT,goLogin:goLogin,acct:acct,backLang:backLang};
+function setMode(m){st.nq=m==="nq";st.tp=m==="tp";st.mk=m==="mk";st.mt=m==="mt";st.bk=m==="bk";if(m!=="mt")clearInterval(st.tmr)}
+function extra(){return st.nq?"goMN":st.tp?"goTP":st.mk?"goMK":st.mt?"goMT":st.bk?"goExam":null}
+function extraLabel(){return st.nq?t("mn"):st.tp?t("tpt"):st.mk?t("mkt"):st.mt?t("mtt"):t("home")}
+function score(qs,ans){var c=0,w=0,k=0;qs.forEach(function(q,i){var a=ans[i];if(a==null)k++;else if(a===q.a)c++;else w++});return {c:c,w:w,k:k,m:Math.round((c-w*0.25)*100)/100}}
+function mmss(s){s=Math.max(0,s|0);return String(Math.floor(s/60)).padStart(2,"0")+":"+String(s%60).padStart(2,"0")}
+function mockLeft(){return Math.max(0,Math.ceil((st.t0+st.lim*1000-Date.now())/1000))}
+function mockTick(){if(st.scr!=="quiz"||!st.mt){clearInterval(st.tmr);return}var r=mockLeft(),e=document.getElementById("tmr");if(e){e.textContent=mmss(r);if(e.classList)e.classList.toggle("warn",r<=60)}if(r<=0){clearInterval(st.tmr);st.timeup=1;finishMock()}}
+function finishMock(){clearInterval(st.tmr);st.tt=Math.min(st.lim,Math.round((Date.now()-st.t0)/1000));st.scr="res";saveAttempt();draw()}
+function goMT(){setMode("");st.scr="mt";draw()}
+function startMock(kind){var sizes=kind==="quick"?[3,2,3,2]:[5,5,5,5],qs=[];
+ ["qa","re","en","ga"].forEach(function(id,i){var sj=S.filter(function(z){return z.id===id})[0];build(sj).slice(0,sizes[i]).forEach(function(q){q.sub=sj.n;qs.push(q)})});
+ setMode("mt");var tt=t("mtt")+" · "+qs.length+"Q";st.mkind=kind;st.lim=kind==="quick"?480:900;st.t0=Date.now();st.tt=0;st.timeup=0;st.ow=false;st.ai=false;
+ st.s={id:"mock",title:tt,n:[tt,tt,tt]};st.qs=qs;st.i=0;st.ans=[];st.scr="quiz";clearInterval(st.tmr);st.tmr=setInterval(mockTick,1000);draw()}
+function prev(){if(st.i>0){st.i--;draw()}}
+function mockStats(r,tt){return (st.timeup?'<p class="msg" style="color:var(--bad)">'+t("tmo")+'</p>':'')+'<div class="stg"><div class="stc"><b>'+r.m+'</b>'+t("mks")+'</div><div class="stc"><b>'+mmss(tt||0)+'</b>'+t("tmt")+'</div><div class="stc"><b>'+r.c+'</b>'+t("cor")+'</div><div class="stc"><b>'+r.w+'</b>'+t("wrg")+'</div><div class="stc"><b>'+r.k+'</b>'+t("skd")+'</div></div>'}
+function mistakes(){var u=st.user&&ld()[st.user],m={};if(!u)return [];u.att.forEach(function(x){if(!x.q||!x.r)return;x.q.forEach(function(q,k){var key=qk(q);if(x.r[k]===q.a)delete m[key];else m[key]=q})});return Object.keys(m).map(function(k){return m[k]})}
+function goMK(){setMode("");st.scr="mk";draw()}
+function startMK(){var ms=shuf(mistakes()).slice(0,10);if(!ms.length)return goMK();setMode("mk");var tt=t("mkt");st.s={id:"mistakes",title:tt,n:[tt,tt,tt]};
+ st.qs=ms.map(function(q){var z=inst(q);z.ai=q.ai;return z});st.i=0;st.ans=[];st.ow=false;st.ai=false;st.scr="quiz";draw()}
+function subjectsOf(id){return id==="ssc"?S:id==="stj"?S.filter(function(z){return z.id!=="ga"}).concat(BS.filter(function(z){return z.ex==="stj"})):BS.filter(function(z){return z.ex===id})}
+function rowToQ(r){var e=function(v){return esc(String(v==null?"":v))},o=[r.opts.map(e)];if(r.opts_hi||r.opts_bn)o=[r.opts.map(e),(r.opts_hi||r.opts).map(e),(r.opts_bn||r.opts).map(e)];
+ return inst({t:[e(r.q_en),e(r.q_hi||r.q_en),e(r.q_bn||r.q_en)],o:o,a:r.correct,e:[e(r.exp_en),e(r.exp_hi||r.exp_en),e(r.exp_bn||r.exp_en)]})}
+async function startBank(id){var s=BS.filter(function(z){return z.id===id})[0];if(!s)return;setMode("bk");st.ai=false;st.s={id:"bank_"+id,bid:id,title:s.n[0],n:s.n};st.ldq=1;st.err="";st.scr="load";draw();
+ var tk=st.sess?await tok():null,r=await sb("/rest/v1/questions?subject=eq."+id+"&active=eq.true&select=id,q_en,q_hi,q_bn,opts,opts_hi,opts_bn,correct,exp_en,exp_hi,exp_bn&limit=300",{tok:tk});
+ if(st.scr!=="load")return;st.ldq=0;var back=function(k){st.scr="exam";fe(k)};
+ if(r.net)return back("enet");
+ var rows=Array.isArray(r.j)?r.j.filter(function(x){return x&&typeof x.q_en==="string"&&Array.isArray(x.opts)&&x.opts.length===4&&x.correct>=0&&x.correct<4}):[];
+ if(!r.ok||rows.length<3)return back("bkerr");
+ var last=st.lastB[id]||[],fresh=rows.filter(function(x){return last.indexOf(x.id)<0});
+ var pick5=shuf(fresh).concat(shuf(rows.filter(function(x){return last.indexOf(x.id)>-1}))).slice(0,5);st.lastB[id]=pick5.map(function(x){return x.id});
+ st.qs=pick5.map(rowToQ);st.i=0;st.ans=[];st.ow=false;st.scr="quiz";draw()}
+function rr(x,a,b,w,h,r,fill){x.beginPath();x.moveTo(a+r,b);x.arcTo(a+w,b,a+w,b+h,r);x.arcTo(a+w,b+h,a,b+h,r);x.arcTo(a,b+h,a,b,r);x.arcTo(a,b,a+w,b,r);x.closePath();x.fillStyle=fill;x.fill()}
+function wrapText(x,txt,cx,y,mw,lh,max){var ls=[],line="";String(txt).split(/\s+/).forEach(function(wd){var tst=line?line+" "+wd:wd;if(x.measureText(tst).width>mw&&line){ls.push(line);line=wd}else line=tst});ls.push(line);
+ if(ls.length>max){ls=ls.slice(0,max);ls[max-1]=ls[max-1].replace(/\s*\S*$/,"")+"…"}ls.forEach(function(s,i){x.fillText(s,cx,y+i*lh)})}
+async function shareImg(o){var W=1080,H=1350,c=document.createElement("canvas");c.width=W;c.height=H;var x=c.getContext("2d");
+ try{await document.fonts.load('700 80px "Plus Jakarta Sans"');await document.fonts.load('600 40px "Hind"')}catch(e){}
+ var F='"Plus Jakarta Sans","Hind","Hind Siliguri",system-ui,sans-serif',fr=o.n?o.p/o.n:0,col=fr>=.8?"#1B8A57":fr>=.5?"#2753D8":"#C77700",cx=W/2,cy=650,R=190;
+ x.fillStyle="#1B2470";x.fillRect(0,0,W,H);x.fillStyle="rgba(255,255,255,.14)";for(var gy=22;gy<H;gy+=44)for(var gx=22;gx<W;gx+=44){x.beginPath();x.arc(gx,gy,3,0,6.2832);x.fill()}
+ rr(x,70,66,88,88,24,"#2753D8");x.strokeStyle="#fff";x.lineWidth=8;x.lineCap="round";x.lineJoin="round";x.beginPath();x.arc(114,110,26,0,6.2832);x.stroke();x.beginPath();x.moveTo(102,112);x.lineTo(111,121);x.lineTo(128,101);x.stroke();
+ x.textBaseline="middle";x.textAlign="left";x.fillStyle="#fff";x.font="700 62px "+F;x.fillText(AN[L()],182,112);
+ rr(x,70,200,W-140,1000,56,"#fff");x.textAlign="center";x.fillStyle="#14213D";x.font="700 56px "+F;wrapText(x,o.title,cx,300,W-260,68,2);
+ x.lineWidth=38;x.lineCap="round";x.strokeStyle="#DCE3F0";x.beginPath();x.arc(cx,cy,R,0,6.2832);x.stroke();x.strokeStyle=col;if(fr>0){x.beginPath();x.arc(cx,cy,R,-1.5708,-1.5708+6.2832*fr);x.stroke()}
+ x.fillStyle="#14213D";x.font="700 150px "+F;x.fillText(String(o.p),cx,cy-10);x.fillStyle="#5A6785";x.font="600 52px "+F;x.fillText("/ "+o.n,cx,cy+98);
+ x.fillStyle=col;x.font="700 66px "+F;x.fillText(t(fr>=.8?"m1":fr>=.5?"m2":"m3").split(/[.!।]/)[0]+"!",cx,960);
+ var mk=o.mk!=null;if(mk){x.fillStyle="#14213D";x.font="600 44px "+F;x.fillText(t("mks")+": "+o.mk,cx,1012)}
+ x.fillStyle="#14213D";x.font="700 42px "+F;wrapText(x,t("shc"),cx,mk?1068:1044,W-300,52,2);
+ var base=typeof location!=="undefined"?location.origin+location.pathname.replace(/[^/]*$/,""):"";
+ x.fillStyle="#5A6785";x.font="600 40px "+F;x.fillText(t("shf"),cx,mk?1128:1112);x.font="600 34px "+F;x.fillText(base.replace(/^https?:\/\//,""),cx,mk?1170:1162);
+ var blob=await new Promise(function(r){c.toBlob(r,"image/png")});if(!blob)return;
+ var file=new File([blob],"taiyari-score.png",{type:"image/png"}),txt=o.title+": "+o.p+"/"+o.n+" · "+t("shc")+" · "+t("shf")+(base?" · "+base:"");
+ try{if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],text:txt});return}}catch(e){if(e&&e.name==="AbortError")return}
+ var a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="taiyari-score.png";document.body.appendChild(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(a.href)},4000)}
+function shareRes(){var r=score(st.qs,st.ans);shareImg({p:r.c,n:st.qs.length,title:(st.s.title&&(st.nq||st.tp||st.mk||st.mt||st.bk))?st.s.title:st.s.n[L()],mk:st.mt?r.m:null})}
+function shareAtt(){var u=st.user&&ld()[st.user],x=u&&u.att[st.view];if(!x)return;var sj=S.filter(function(z){return z.id===x.s})[0];shareImg({p:x.p,n:x.n,title:sj?sj.n[L()]:(x.ti||t("mn")),mk:x.mk!=null?x.mk:null})}
+function started(){return st.scr==="quiz"&&(st.mt||(st.ans&&st.ans.length>0))}
+function guard(fn){if(started()){st.cfn=fn;st.cf=1;draw()}else NAVF[fn]()}
+function cfYes(){var f=st.cfn;st.cf=0;st.cfn=null;if(f&&NAVF[f])NAVF[f]();else draw()}
+function cfNo(){st.cf=0;st.cfn=null;draw()}
+function bkg(fn,label){return '<button class="link" onclick="guard(\''+fn+'\')">← '+label+'</button>'}
+function cfHtml(){return '<div class="mdl"><div class="dlg" role="alertdialog" aria-modal="true" aria-labelledby="cft" aria-describedby="cfd"><h2 id="cft">'+t("sure")+'</h2><p id="cfd" class="mute">'+t("surep")+'</p><div class="dbt"><button class="cta alt" onclick="cfYes()">'+t("ysl")+'</button><button class="cta" id="cfn" onclick="cfNo()">'+t("nol")+'</button></div></div></div>'}
+function snapNav(){try{sessionStorage.setItem("tq_nav",JSON.stringify({scr:st.scr,ex:st.ex,sid:st.s&&st.s.id||"",view:st.view,g:st.guest?1:0,k:st.nq?"nq":st.tp?"tp":st.mk?"mk":st.mt?"mt":st.bk?"bk":""}))}catch(e){}}
+function restoreNav(){var n=null;try{n=JSON.parse(sessionStorage.getItem("tq_nav")||"null")}catch(e){}
+ if(!n||!st.lang)return;
+ if(!st.user){if(n.g)st.guest=true;else return}
+ var sc=n.scr,sub=S.filter(function(z){return z.id===n.sid})[0];
+ if(n.ex)st.ex=n.ex;
+ if(sc==="quiz"||sc==="res"||sc==="load")sc={nq:"mn",tp:"tp",mk:"mk",mt:"mt",bk:"exam"}[n.k]||"subj";
+ if(sc==="del")sc="prog";
+ if(sc==="subj"||sc==="notes"){if(sub)st.s=sub;else sc=st.ex?"exam":"home"}
+ if(sc==="exam"&&!st.ex)sc="home";
+ if(sc==="att"){st.view=n.view|0;var u=ld()[st.user];if(!u||!u.att[st.view])sc="prog"}
+ if(!st.user&&(sc==="prog"||sc==="mk"))sc="home";
+ if(["home","exam","subj","notes","prog","mn","tp","mt","mk","att"].indexOf(sc)<0)sc="home";
+ st.scr=sc;if(sc==="exam"&&st.ex!=="ssc")setTimeout(loadBankCounts,0)}
+function syncHist(){if(!window.history&&typeof history==="undefined")return;var d=depthOf();
+ if(d>st.hd){for(var i=st.hd+1;i<=d;i++)history.pushState({d:i},"");st.hd=d}
+ else if(d<st.hd){var by=d-st.hd;st.hd=d;st.skipUntil=Date.now()+500;history.go(by)}}
+function onPop(){if(Date.now()<st.skipUntil){st.skipUntil=0;return}
+ var pd=history.state&&typeof history.state.d==="number"?history.state.d:0;
+ if(started()&&pd<depthOf()){history.pushState({d:depthOf()},"");st.hd=depthOf();st.cfn=parentOf();st.cf=st.cf?0:1;draw();return}
+ st.hd=pd;
+ if(pd>=depthOf()){syncHist();return}
+ var f=parentOf();if(f&&NAVF[f])NAVF[f]()}
+function draw(){
+ var h="",l=L(),sc=st.scr;
+ if(sc==="lang"){
+  h='<div class="logo">'+LOGO+'<span>Taiyari · तैयारी</span></div><h1 style="margin-top:22px">'+T.en.pick+'</h1><p class="mute">अपनी भाषा चुनें · আপনার ভাষা বেছে নিন</p><button class="big" onclick="setLang(\'en\')">English</button><button class="big" onclick="setLang(\'hi\')">हिन्दी</button><button class="big" onclick="setLang(\'bn\')">বাংলা</button>';
+ }else if(sc==="login"){
+  var EYE='<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>';
+  h='<div class="logo">'+LOGO+'<span>'+AN[l]+'</span></div><h1 style="margin-top:22px">'+t("lt")+'</h1><p class="mute">'+t("lsb")+'</p>'+(st.info?'<p class="demo">'+st.info+'</p>':'')+
+  '<input id="em" class="inp" type="email" inputmode="email" autocomplete="email" aria-label="'+t("em")+'" placeholder="'+t("em")+'" value="'+esc(st.em)+'">'+
+  '<label class="fld pwf ni"><input id="pw" class="inp" type="password" autocomplete="current-password" aria-label="'+t("pw")+'" placeholder="'+t("pw")+'"><button type="button" class="eye" id="pwt" onclick="togglePw()" aria-label="'+t("shw")+'" aria-pressed="false">'+EYE+'</button></label>'+(st.err?'<p class="err">'+st.err+'</p>':'')+
+  '<button class="cta" onclick="doLogin()">'+t("lgn")+'</button><p style="margin-top:12px"><button class="link" onclick="openSignup(\'reset\')">'+t("fp")+'</button></p><button class="cta alt" onclick="openSignup(\'signup\')">'+t("su")+'</button><button class="cta alt" onclick="guest()">'+t("gs")+'</button><p style="margin-top:14px"><button class="link" onclick="chooseLang()">A / अ / অ</button></p>';
+ }else if(sc==="email"){
+  h='<p>'+bk("goLogin",t("bl"))+'</p><h1>'+(st.fl.mode==="reset"?t("t1r"):t("t1"))+'</h1><p class="mute">'+t("d1")+'</p><input id="em" class="inp" type="email" inputmode="email" autocomplete="email" placeholder="'+t("em")+'" value="'+esc(st.fl.email||"")+'">'+(st.err?'<p class="err">'+st.err+'</p>':'')+'<button class="cta" onclick="sendOtp()">'+t("send")+'</button>';
+ }else if(sc==="otp"){
+  h='<p>'+bk("goLogin",t("bl"))+'</p><h1>'+t("t2")+'</h1><p class="mute">'+t("dd")+' <b>'+esc(st.fl.email)+'</b></p>'+(st.info?'<p class="demo">'+st.info+'</p>':'')+'<p class="mute">'+t("spam")+'</p><input id="ot" class="inp" inputmode="numeric" maxlength="10" autocomplete="one-time-code" placeholder="'+t("oc2")+'">'+(st.err?'<p class="err">'+st.err+'</p>':'')+'<button class="cta" onclick="verifyOtp()">'+t("ver")+'</button><p style="margin-top:12px"><button class="link" onclick="resend()">'+t("rs")+'</button></p>';
+ }else if(sc==="setpw"){
+  h='<h1>'+t("t3")+'</h1><p class="mute">'+t("d3")+'</p><input id="p1" class="inp" type="password" autocomplete="new-password" placeholder="'+t("pw")+'"><input id="p2" class="inp" type="password" autocomplete="new-password" placeholder="'+t("pw2")+'">'+(st.err?'<p class="err">'+st.err+'</p>':'')+'<button class="cta" onclick="savePw()">'+t("cont")+'</button>';
+ }else if(sc==="profile"){
+  var GN=[["m","gm"],["f","gf"],["o","go"],["n","gn"]];
+  h='<h1>'+t("t4")+'</h1><label class="lbl" for="fn">'+t("fn")+'</label><input id="fn" class="inp" style="margin-top:6px" maxlength="40" autocomplete="name" value="'+esc(st.fl.fn||"")+'"><label class="lbl" for="dob">'+t("dob")+'</label><input id="dob" class="inp" style="margin-top:6px" type="date" max="'+new Date().toISOString().slice(0,10)+'" value="'+esc(st.fl.dob||"")+'"><span class="lbl">'+t("gen")+'</span><div style="margin-top:6px">';
+  GN.forEach(function(g){h+='<button class="opt'+(st.fl.g===g[0]?' sel':'')+'" onclick="setGen(\''+g[0]+'\')"><span class="o"></span><span>'+t(g[1])+'</span></button>'});
+  h+='</div>'+(st.err?'<p class="err">'+st.err+'</p>':'')+'<button class="cta" onclick="saveProfile()">'+t("fin")+'</button>';
+ }else if(sc==="att"){
+  var u2=ld()[st.user]||{att:[]},x2=u2.att[st.view];
+  if(!x2){st.scr="prog";return draw()}
+  var sj2=S.filter(function(z){return z.id===x2.s})[0];
+  h=hdr(bk("acct",t("pg")))+'<h1>'+(sj2?sj2.n[l]:esc(x2.ti||t("mn")))+'</h1><p class="mute">'+new Date(x2.d).toLocaleString()+'</p>'+ring(x2.p,x2.n)+'<p class="msg">'+t(x2.p/x2.n>=.8?"m1":x2.p/x2.n>=.5?"m2":"m3")+'</p>'+(x2.mk!=null&&x2.q?mockStats(Object.assign(score(x2.q,x2.r),{m:x2.mk}),x2.tt):'')+'<p><button class="chip" onclick="shareAtt()">↗ '+t("shr")+'</button></p>'+(x2.q?'<h2>'+t("rev")+'</h2>'+revList(x2.q,x2.r,l):'<p class="demo" style="background:var(--card);border-color:var(--line)">'+t("nq")+'</p>');
+ }else if(sc==="del"){
+  h=hdr(bk("acct",t("pg")))+'<h1>'+t("dla")+'</h1><p>'+t("dlq")+'</p>'+(st.err?'<p class="err">'+st.err+'</p>':'')+'<button class="cta" style="background:var(--bad);color:var(--bg)" onclick="doDelete()">'+t("dlc")+'</button><button class="cta alt" onclick="acct()">'+t("dlk")+'</button>';
+ }else if(sc==="prog"){
+  var u=ld()[st.user]||{att:[],name:""},qn=0,qc=0;u.att.forEach(function(x){qn+=x.n;qc+=x.p});
+  h=hdr(bk("goHome",t("allex")))+'<h1>'+t("pg")+'</h1><p class="mute">'+esc(u.name)+' · '+esc(u.email||"")+'</p><div class="stg"><div class="stc"><b>'+u.att.length+'</b>'+t("qt")+'</div><div class="stc"><b>'+qn+'</b>'+t("qa2")+'</div><div class="stc"><b>'+qc+'</b>'+t("qc")+'</div><div class="stc"><b>'+(qn?Math.round(qc/qn*100):0)+'%</b>'+t("ac")+'</div></div><h2>'+t("rc")+'</h2>';
+  if(!u.att.length)h+='<p class="mute" style="margin-top:10px">'+t("nn")+'</p>';
+  u.att.map(function(_,i){return i}).slice(-10).reverse().forEach(function(i){var x=u.att[i],sj=S.filter(function(z){return z.id===x.s})[0],cl='rv '+(x.p>=x.n/2?'good':'miss'),inn='<p class="q2"><span style="float:right;color:var(--mute)">›</span>'+(sj?sj.n[l]:esc(x.ti||t("mn")))+' — '+x.p+' / '+x.n+'</p><p class="mute">'+new Date(x.d).toLocaleString()+' · '+t("tp")+'</p>';
+   h+='<button class="'+cl+'" style="display:block;width:100%;text-align:left;font:inherit;color:inherit;cursor:pointer" onclick="openAtt('+i+')">'+inn+'</button>'});
+  h+='<button class="cta alt" onclick="logout()">'+t("lo")+'</button><p style="margin-top:14px"><button class="link" onclick="goDel()">'+t("dla")+'</button></p>';
+ }else if(sc==="mn"){
+  var ns=getNotes();
+  h=hdr(bk("goHome",t("allex")))+'<h1>'+t("mn")+'</h1><p class="mute">'+t("mnd")+'</p>'+(st.user?'':'<p class="mute">'+t("gnote")+'</p>')+'<input id="nt" class="inp" maxlength="60" placeholder="'+t("ntt")+'" value="'+esc(st.nd.t)+'"><textarea id="nx" class="inp" rows="6" placeholder="'+t("ntx")+'">'+esc(st.nd.x)+'</textarea><label class="lbl" style="margin-top:12px">'+t("upl")+'<input type="file" accept=".txt,.md,.pdf,text/plain,application/pdf" onchange="readFile(this)" style="display:block;margin-top:6px;max-width:100%"></label><p class="mute" style="font-size:14px;margin-top:8px">'+t("pdfh")+'</p><p id="pdfmsg" class="mute" style="font-size:14px;margin-top:4px"></p><p class="mute" style="font-size:14px;margin-top:4px">'+t("aipr")+'</p>'+(st.err?'<p class="err">'+st.err+'</p>':'')+'<button class="cta" onclick="saveNote()">'+t("svn")+'</button><h2>'+t("mn")+'</h2>';
+  if(!ns.length)h+='<p class="mute" style="margin-top:10px">'+t("nonote")+'</p>';
+  ns.forEach(function(n){h+='<div class="rv good"><p class="q2">'+esc(n.title)+'</p><p class="mute">'+esc(n.text.slice(0,70))+'…</p><button class="cta" onclick="startNoteAI(\''+n.id+'\')">'+t("aibtn")+'</button><button class="cta alt" onclick="startNote(\''+n.id+'\')">'+t("prn")+'</button><button class="cta alt" onclick="delNote(\''+n.id+'\')">'+t("dl")+'</button></div>'});
+ }else if(sc==="tp"){
+  h=hdr(bk("goHome",t("allex")))+'<h1>'+t("tpt")+'</h1><p class="mute">'+t("tpd")+'</p><input id="tpx" class="inp" maxlength="80" placeholder="'+t("tpi")+'" value="'+esc(st.tx)+'">'+(st.err?'<p class="err">'+st.err+'</p>':'')+'<button class="cta" onclick="startTopicAI()">'+t("tpg")+'</button><p class="mute" style="font-size:14px;margin-top:12px">'+t("aiv")+'</p>';
+ }else if(sc==="load"){
+  h='<div class="ldv"><div class="omr" aria-hidden="true"><span>A</span><span>B</span><span>C</span><span>D</span></div><h1 role="status">'+t(st.ldq?"ldq":st.tp?"aiw2":"aiw")+'</h1><p class="mute ldt" id="ldt">'+tipText(st.ti||0)+'</p><button class="cta alt" onclick="cancelLoad()">'+t("cnl")+'</button></div>';
+ }else if(sc==="welcome"){
+  var wu=ld()[st.user],wn=wu&&wu.name?String(wu.name).split(" ")[0]:String(st.user||"").split("@")[0],SP=[0,36,72,108,144,180,216,252,288,324].map(function(a){return '<i style="--a:'+a+'deg"></i>'}).join("");
+  h='<div class="wl2" onclick="endWelcome()"><div class="aur" aria-hidden="true"><i class="b1"></i><i class="b2"></i><i class="b3"></i></div><div class="wl2c"><div class="orb"><svg viewBox="0 0 100 100" width="100" height="100" aria-hidden="true"><defs><linearGradient id="wg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#A5B4FC"/><stop offset="1" stop-color="#67E8F9"/></linearGradient></defs><circle class="wc" cx="50" cy="50" r="42" fill="none" stroke="url(#wg)" stroke-width="7" stroke-linecap="round" transform="rotate(-90 50 50)"/><path class="wt" d="M31 52l13 13 25-28" fill="none" stroke="url(#wg)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="spk">'+SP+'</span></div><h1 role="status"><span class="gt">'+t("gh")+', '+esc(wn)+'</span></h1><p>'+t("wlc")+'</p><div class="ldb"><i></i></div><button class="link wl" onclick="endWelcome()">'+t("cont")+' →</button></div></div>';
+ }else if(sc==="home"){
+  var hu=st.user&&ld()[st.user],nm=hu&&hu.name?String(hu.name).split(" ")[0]:(st.user?String(st.user).split("@")[0]:"");
+  h=hdr('<span class="logo">'+LOGO+'<span>'+AN[l]+'</span></span>')+'<h1>'+(nm?t("gh")+', '+esc(nm):t("wel"))+'</h1>';
+  if(st.user){var sk=streakInfo();h+='<div class="sheet" role="group" aria-label="'+t("wkl")+'"><div class="wk">'+sk.w.map(function(d){return '<div class="wd'+(d.on?' on':'')+(d.today?' td':'')+'"><i></i><span>'+d.w+'</span></div>'}).join("")+'</div><p class="stk">'+(sk.s?'<b class="sn">'+sk.s+'</b><span>'+t("stkd")+'</span>':'<span>'+t("stk0")+'</span>')+'</p></div>'}
+  h+='<button class="hero" onclick="goTP()"><span aria-hidden="true">✨</span><b>'+t("tpt")+'</b><span class="d">'+t("tpd")+'</span><span class="hgo">'+t("tpg")+'</span></button>';
+  h+='<h2>'+t("exams")+'</h2><p class="mute">'+t("esub")+'</p><div class="grid">';
+  E.forEach(function(e){h+=tile("openEx('"+e.id+"')",e.ic,e.n[l],e.live?e.d[l]:t("soon"),ACC[e.id],!e.live)});
+  var mkn=st.user?mistakes().length:0;h+='</div><div style="margin-top:12px">'+card("goMN()","✎",t("mn"),t("mnd"),"#14B8A6")+'</div><div style="margin-top:12px">'+card("goMK()","↺",t("mkt"),mkn?mkn+" "+t("mkc"):t("mkd"),ACC.mk)+'</div>';
+ 
+ }else if(sc==="mt"){
+  h=hdr(bk("goExam",t("home")))+'<h1>'+t("mtt")+'</h1><p class="mute">'+t("mti")+'</p>'+card("startMock('quick')","10",t("mtq"),t("mtqm"),ACC.mt)+card("startMock('full')","20",t("mtf"),t("mtfm"),ACC.mt);
+ }else if(sc==="mk"){
+  var ms=mistakes();
+  h=hdr(bk("goHome",t("allex")))+'<h1>'+t("mkt")+'</h1><p class="mute">'+(ms.length?ms.length+" "+t("mkc"):t("mke"))+'</p>'+(st.user?'':'<p class="mute">'+t("lg2")+'</p>');
+  if(ms.length){h+='<button class="cta" onclick="startMK()">'+t("mkp")+'</button>';ms.slice(0,30).forEach(function(q){var oo=q.o[l]||q.o[0];h+='<div class="rv miss"><p class="q2">'+q.t[l]+'</p><p>'+t("right")+': <b>'+oo[q.a]+'</b></p><p class="why">'+t("why")+': '+(q.e[l]||q.e[0])+'</p></div>'})}
+ 
+ }else if(sc==="exam"){
+  var ex=E.filter(function(x){return x.id===st.ex})[0];
+  h=hdr(bk("goHome",t("allex")))+'<h1>'+ex.n[l]+'</h1>';
+  if(ex.live){h+='<p class="mute">'+t("sub")+'</p>';
+   if(ex.id==="ssc"||ex.id==="stj")h+=card("goMT()","⏱",t("mtt"),t("mtd"),ACC.mt);
+   if(st.err)h+='<p class="err">'+st.err+'</p>';
+   subjectsOf(ex.id).forEach(function(s){if(s.bank){var n=st.bc?st.bc[s.id]||0:-1,ok=n>=3;h+=card(ok?"startBank('"+s.id+"')":"bankSoon()",s.ic,s.n[l],n<0?"…":ok?n+" "+t("qs"):t("soon"),ACC[s.id],!ok&&n>=0)}else h+=card("openSubj('"+s.id+"')",s.ic,s.n[l],QN+" "+t("qs"),ACC[s.id])})}
+  else h+='<p class="mute">'+t("soonh")+'</p><p style="margin-top:12px">'+t("soonp")+'</p><button class="cta" onclick="openEx(\'ssc\')">'+t("trySsc")+'</button>';
+ }else if(sc==="subj"){
+  h=hdr(bk("goExam",t("allex").replace(/.*/,t("home"))))+'<h1>'+st.s.n[l]+'</h1>'+card("showNotes()","✎",t("notes"),t("nh"),ACC[st.s.id])+card("startQuiz()","✓",t("prac"),QN+" "+t("qs"),ACC[st.s.id]);
+ }else if(sc==="notes"){
+  h=hdr(bk(extra()||"goSubj",st.s.n[l]))+'<h1>'+t("nh")+'</h1><ul class="note">';
+  st.s.nt[l].forEach(function(x){h+='<li>'+x+'</li>'});h+='</ul><button class="cta" onclick="startQuiz()">'+t("prac")+'</button>';
+ }else if(sc==="quiz"){
+  var q=st.qs[st.i],n=st.qs.length,o=q.o[l]||q.o[0],cur=st.ans[st.i];
+  h=hdr(bkg(extra()||"goSubj",st.s.n[l]))+'<div class="qh"><p class="mute">'+t("q")+' '+(st.i+1)+' '+t("of")+' '+n+'</p>'+(st.mt?'<span class="chip tm" id="tmr">'+mmss(mockLeft())+'</span>':'')+'</div><div class="bar"><i style="width:'+(st.i/n*100)+'%"></i></div>'+(q.sub?'<p class="mute" style="margin:0 0 6px">'+q.sub[l]+'</p>':'')+'<div class="q">'+q.t[l]+'</div>';
+  o.forEach(function(x,k){h+='<button class="opt'+(cur===k?' sel':'')+'" onclick="pickOpt('+k+')"><span class="o">'+"ABCD".charAt(k)+'</span><span>'+x+'</span></button>'});
+  if(st.mt)h+='<div class="dbt">'+(st.i>0?'<button class="cta alt" onclick="prev()">'+t("prv")+'</button>':'')+'<button class="cta" onclick="next()">'+(st.i<n-1?(cur==null?t("skb"):t("next")):t("sbm"))+'</button></div>';
+  else if(cur!=null)h+='<button class="cta" onclick="next()">'+(st.i<n-1?t("next"):t("see"))+'</button>';
+ 
+}else{
+  var n=st.qs.length,rs=score(st.qs,st.ans),pts=rs.c;
+  h=hdr('<span class="chip">'+st.s.n[l]+'</span>')+'<h1>'+t("done")+'</h1><p class="mute">'+t("you")+'</p>'+ring(pts,n)+'<p class="msg">'+t(pts/n>=.8?"m1":pts/n>=.5?"m2":"m3")+'</p>'+(st.mt?mockStats(rs,st.tt):'')+'<p><button class="chip" onclick="shareRes()">↗ '+t("shr")+'</button></p><p class="mute">'+(st.user?"✓ "+t("sv"):t("lg2")+' <button class="link" onclick="acct()">'+t("lb")+'</button>')+'</p>'+(st.tp?'<p class="mute">'+t("aiv")+'</p>':'')+'<h2>'+t("rev")+'</h2>';
+  h+=revList(st.qs,st.ans,l);
+  h+='<button class="cta" onclick="'+(st.mt?"startMock('"+st.mkind+"')":st.mk?"startMK()":st.bk?"startBank('"+st.s.bid+"')":st.ai?(st.tp?"startTopicAI()":"startNoteAI('"+st.s.nid+"')"):"startQuiz()")+'">'+t("retry")+'</button><button class="cta alt" onclick="'+(extra()||'goExam')+'()">'+extraLabel()+'</button>';
+ }
+ 
+var fresh=st.scr!==st.ps&&["login","email","otp","setpw","profile"].indexOf(st.scr)<0;st.ps=st.scr;h='<div class="pg'+(fresh?' anim':'')+(st.enter>Date.now()&&sc==="home"?' enter':'')+'">'+h+'</div>';
+ app.innerHTML=h+'<p class="mute" style="font-size:13px;margin-top:28px">Taiyari v23 · <a href="privacy.html" target="_blank" rel="noopener" style="color:inherit">'+t("pv")+'</a> · <a href="terms.html" target="_blank" rel="noopener" style="color:inherit">'+t("tm")+'</a></p>';clearInterval(st.ldi);if(st.scr==="load")st.ldi=setInterval(tipTick,3200);if(st.scr!=="quiz")st.cf=0;if(st.cf)app.insertAdjacentHTML("beforeend",cfHtml());document.documentElement.lang=LN[l];window.scrollTo(0,0);syncHist();snapNav();if(st.cf){var nb=document.getElementById("cfn");if(nb&&nb.focus)nb.focus()}
+}
+try{var h0=history.state&&typeof history.state.d==="number"?history.state.d:0;if(!history.state)history.replaceState({d:0},"");st.hd=h0}catch(e){}
+restoreNav();
+if(window.addEventListener){window.addEventListener("popstate",onPop);window.addEventListener("keydown",function(e){if(e.key==="Escape"&&st.cf)cfNo()})}
+draw();
+if(st.sess)syncDown().then(function(){if(["home","exam","subj","prog","mn"].indexOf(st.scr)>-1)draw()}).catch(function(){});
+</script>
+<script>if("serviceWorker" in navigator){addEventListener("load",function(){navigator.serviceWorker.register("sw.js").catch(function(){});navigator.serviceWorker.addEventListener("controllerchange",function(){if(!sessionStorage.getItem("swr")){sessionStorage.setItem("swr","1");location.reload()}})})}</script>
+</body>
+</html>
